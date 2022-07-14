@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -30,6 +27,10 @@ public class Rating {
     @NotNull
     @Column(name = "CREATED")
     private Date created;
+
+    @ManyToOne
+    @JoinColumn(name = "COMMENT_ID")
+    private Comment comment;
 
     public Rating(int rating, Date created) {
         this.rating = rating;

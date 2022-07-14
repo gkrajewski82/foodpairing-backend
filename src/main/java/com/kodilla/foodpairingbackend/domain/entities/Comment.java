@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +28,18 @@ public class Comment {
     @NotNull
     @Column(name = "CREATED")
     private Date created;
+
+    @ManyToOne
+    @JoinColumn(name = "COMPOSITION_ID")
+    private Composition composition;
+
+    @OneToMany(
+            targetEntity = Rating.class,
+            mappedBy = "comment",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    private List<Rating> ratingList;
 
     public Comment(String description, Date created) {
         this.description = description;

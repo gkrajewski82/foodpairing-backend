@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,6 +34,14 @@ public class Drink {
 
     @Column(name = "GLASS")
     private String glass;
+
+    @OneToMany(
+            targetEntity = DrinkIngredient.class,
+            mappedBy = "drink",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<DrinkIngredient> DrinkIngredientList;
 
     public Drink(Long externalSystemId, String name, boolean alcoholic, String glass) {
         this.externalSystemId = externalSystemId;

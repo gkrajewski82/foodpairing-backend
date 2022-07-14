@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,6 +37,22 @@ public class Composition {
     @NotNull
     @Column(name = "DISH_RECIPE_URL")
     private String dishRecipeUrl;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "DRINK_ID")
+    private Drink drink;
+
+    @OneToMany(
+            targetEntity = Comment.class,
+            mappedBy = "composition",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    private List<Comment> commentList;
 
     public Composition(Long externalSystemDishId, String dishName, int readyInMinutes, int servings, String dishRecipeUrl) {
         this.externalSystemDishId = externalSystemDishId;

@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,6 +31,14 @@ public class User {
     @NotNull
     @Column(name = "USER_KEY")
     private String userKey;
+
+    @OneToMany(
+            targetEntity = Composition.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    private List<Composition> userCompositionList;
 
     public User(String username, int status, String userKey) {
         this.username = username;
