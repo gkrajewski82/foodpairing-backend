@@ -21,8 +21,8 @@ public class Rating {
     private Long id;
 
     @NotNull
-    @Column(name = "RATING")
-    private int rating;
+    @Column(name = "VALUE")
+    private int value;
 
     @NotNull
     @Column(name = "CREATED")
@@ -33,7 +33,7 @@ public class Rating {
     private Comment comment;
 
     public Rating(int rating, Date created) {
-        this.rating = rating;
+        this.value = rating;
         this.created = created;
     }
 }

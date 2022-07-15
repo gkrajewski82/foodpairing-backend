@@ -30,8 +30,8 @@ public class Comment {
     private Date created;
 
     @ManyToOne
-    @JoinColumn(name = "COMPOSITION_ID")
-    private Composition composition;
+    @JoinColumn(name = "FOOD_COMPOSITION_ID")
+    private FoodComposition foodComposition;
 
     @OneToMany(
             targetEntity = Rating.class,

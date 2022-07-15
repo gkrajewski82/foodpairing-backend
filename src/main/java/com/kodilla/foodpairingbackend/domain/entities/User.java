@@ -33,12 +33,12 @@ public class User {
     private String userKey;
 
     @OneToMany(
-            targetEntity = Composition.class,
+            targetEntity = FoodComposition.class,
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private List<Composition> userCompositionList;
+    private List<FoodComposition> foodCompositionList;
 
     public User(String username, int status, String userKey) {
         this.username = username;

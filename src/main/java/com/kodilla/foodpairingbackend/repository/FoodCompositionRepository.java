@@ -1,11 +1,11 @@
 package com.kodilla.foodpairingbackend.repository;
 
-import com.kodilla.foodpairingbackend.domain.entities.Composition;
+import com.kodilla.foodpairingbackend.domain.entities.FoodComposition;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface CompositionRepository extends CrudRepository<Composition, Long> {
+public interface FoodCompositionRepository extends CrudRepository<FoodComposition, Long> {
 }

@@ -11,8 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name ="COMPOSITIONS")
-public class Composition {
+@Entity(name ="FOOD_COMPOSITIONS")
+public class FoodComposition {
 
     @Id
     @GeneratedValue
@@ -48,13 +48,13 @@ public class Composition {
 
     @OneToMany(
             targetEntity = Comment.class,
-            mappedBy = "composition",
+            mappedBy = "foodComposition",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
     private List<Comment> commentList;
 
-    public Composition(Long externalSystemDishId, String dishName, int readyInMinutes, int servings, String dishRecipeUrl) {
+    public FoodComposition(Long externalSystemDishId, String dishName, int readyInMinutes, int servings, String dishRecipeUrl) {
         this.externalSystemDishId = externalSystemDishId;
         this.dishName = dishName;
         this.readyInMinutes = readyInMinutes;
