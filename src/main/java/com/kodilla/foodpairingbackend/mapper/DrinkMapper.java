@@ -1,7 +1,7 @@
 package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.DrinkDto;
-import com.kodilla.foodpairingbackend.domain.entities.Drink;
+import com.kodilla.foodpairingbackend.domain.entity.Drink;
 import org.springframework.stereotype.Service;
 
 @Service

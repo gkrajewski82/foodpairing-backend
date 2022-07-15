@@ -1,7 +1,7 @@
 package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.CommentDto;
-import com.kodilla.foodpairingbackend.domain.entities.Comment;
+import com.kodilla.foodpairingbackend.domain.entity.Comment;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Service
 public class CommentMapper {
 
-    private FoodCompositionMapper foodCompositionMapper;
+    private CompositionMapper compositionMapper;
     private RatingMapper ratingMapper;
 
     public Comment mapToComment(final CommentDto commentDto) {
@@ -18,7 +18,7 @@ public class CommentMapper {
                 commentDto.getId(),
                 commentDto.getDescription(),
                 commentDto.getCreated(),
-                foodCompositionMapper.mapToFoodComposition(commentDto.getFoodComposition()),
+                compositionMapper.mapToComposition(commentDto.getFoodComposition()),
                 ratingMapper.mapToRatingList(commentDto.getRatingList())
         );
     }
@@ -28,7 +28,7 @@ public class CommentMapper {
                 comment.getId(),
                 comment.getDescription(),
                 comment.getCreated(),
-                foodCompositionMapper.mapToFoodCompositionDto(comment.getFoodComposition()),
+                compositionMapper.mapToCompositionDto(comment.getComposition()),
                 ratingMapper.mapToRatingDtoList(comment.getRatingList())
         );
     }

@@ -1,7 +1,7 @@
 package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.RatingDto;
-import com.kodilla.foodpairingbackend.domain.entities.Rating;
+import com.kodilla.foodpairingbackend.domain.entity.Rating;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.kodilla.foodpairingbackend.domain.entities;
+package com.kodilla.foodpairingbackend.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,12 +33,12 @@ public class User {
     private String userKey;
 
     @OneToMany(
-            targetEntity = FoodComposition.class,
+            targetEntity = Composition.class,
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private List<FoodComposition> foodCompositionList;
+    private List<Composition> compositionList;
 
     public User(String username, int status, String userKey) {
         this.username = username;

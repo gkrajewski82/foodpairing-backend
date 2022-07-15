@@ -1,4 +1,4 @@
-package com.kodilla.foodpairingbackend.domain.entities;
+package com.kodilla.foodpairingbackend.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

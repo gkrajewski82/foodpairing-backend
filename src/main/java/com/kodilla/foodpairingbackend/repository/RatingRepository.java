@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingbackend.repository;
 
-import com.kodilla.foodpairingbackend.domain.entities.Rating;
+import com.kodilla.foodpairingbackend.domain.entity.Rating;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

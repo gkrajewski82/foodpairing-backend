@@ -15,6 +15,6 @@ public class CommentDto {
     private Long id;
     private String description;
     private Date created;
-    private FoodCompositionDto foodComposition;
+    private CompositionDto foodComposition;
     private List<RatingDto> ratingList;
 }

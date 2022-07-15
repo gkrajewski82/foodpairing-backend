@@ -1,4 +1,4 @@
-package com.kodilla.foodpairingbackend.domain.entities;
+package com.kodilla.foodpairingbackend.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +30,8 @@ public class Comment {
     private Date created;
 
     @ManyToOne
-    @JoinColumn(name = "FOOD_COMPOSITION_ID")
-    private FoodComposition foodComposition;
+    @JoinColumn(name = "COMPOSITION_ID")
+    private Composition composition;
 
     @OneToMany(
             targetEntity = Rating.class,

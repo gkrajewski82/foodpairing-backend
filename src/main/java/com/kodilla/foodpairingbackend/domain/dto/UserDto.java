@@ -15,5 +15,5 @@ public class UserDto {
     private String username;
     private int status;
     private String userKey;
-    private List<FoodCompositionDto> foodCompositionList;
+    private List<CompositionDto> foodCompositionList;
 }

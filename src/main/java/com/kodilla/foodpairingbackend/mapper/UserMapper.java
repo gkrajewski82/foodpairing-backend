@@ -1,13 +1,13 @@
 package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.UserDto;
-import com.kodilla.foodpairingbackend.domain.entities.User;
+import com.kodilla.foodpairingbackend.domain.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapper {
 
-    private FoodCompositionMapper foodCompositionMapper;
+    private CompositionMapper compositionMapper;
 
     public User mapToUser(final UserDto userDto) {
         return new User(
@@ -15,7 +15,7 @@ public class UserMapper {
                 userDto.getUsername(),
                 userDto.getStatus(),
                 userDto.getUserKey(),
-                foodCompositionMapper.napToFoodCompositionList(userDto.getFoodCompositionList())
+                compositionMapper.mapToCompositionList(userDto.getFoodCompositionList())
         );
     }
 
@@ -25,7 +25,7 @@ public class UserMapper {
                 user.getUsername(),
                 user.getStatus(),
                 user.getUserKey(),
-                foodCompositionMapper.napToFoodCompositionDtoList(user.getFoodCompositionList())
+                compositionMapper.mapToCompositionDtoList(user.getCompositionList())
         );
     }
 }
