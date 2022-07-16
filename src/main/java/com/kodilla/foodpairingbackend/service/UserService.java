@@ -2,6 +2,7 @@ package com.kodilla.foodpairingbackend.service;
 
 import com.kodilla.foodpairingbackend.domain.entity.User;
 import com.kodilla.foodpairingbackend.exception.UserNotFoundException;
+import com.kodilla.foodpairingbackend.mapper.UserMapper;
 import com.kodilla.foodpairingbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     public List<User> getUsers() {
         return userRepository.findAll();

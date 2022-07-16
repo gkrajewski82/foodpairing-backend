@@ -12,7 +12,7 @@ public class DishService {
 
     private final DishRepository dishRepository;
 
-    public Dish detDish(final Long dishId) throws DishNotFoundException {
+    public Dish getDish(final Long dishId) throws DishNotFoundException {
         return dishRepository.findById(dishId).orElseThrow(DishNotFoundException::new);
     }
 
