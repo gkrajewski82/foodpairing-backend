@@ -1,5 +1,6 @@
 package com.kodilla.foodpairingbackend.client;
 
+import com.kodilla.foodpairingbackend.config.TheCocktailDbConfig;
 import com.kodilla.foodpairingbackend.domain.dto.DrinkDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,10 +14,12 @@ import java.net.URI;
 public class TheCocktailDbClient {
 
     private final RestTemplate restTemplate;
+    private final TheCocktailDbConfig theCocktailDbConfig;
 
-    public DrinkDto getRandomDrink() {
+    public DrinkDto getRandomDrinkFromApi() {
         URI url = UriComponentsBuilder
-                .fromHttpUrl("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+                .fromHttpUrl(theCocktailDbConfig.getTheCocktailDbEndpoint() +
+                        theCocktailDbConfig.getTheCocktailDbKey() + "/random.php")
                 .build()
                 .encode()
                 .toUri();
