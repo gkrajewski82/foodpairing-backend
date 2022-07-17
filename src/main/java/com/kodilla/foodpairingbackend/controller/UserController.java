@@ -1,9 +1,7 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.UserDto;
-import com.kodilla.foodpairingbackend.domain.entity.User;
 import com.kodilla.foodpairingbackend.exception.UserNotFoundException;
-import com.kodilla.foodpairingbackend.mapper.UserMapper;
 import com.kodilla.foodpairingbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -44,5 +42,4 @@ public class UserController {
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
         return ResponseEntity.ok(userService.saveUser(userDto));
     }
-
 }

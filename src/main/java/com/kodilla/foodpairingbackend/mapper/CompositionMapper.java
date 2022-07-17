@@ -3,7 +3,6 @@ package com.kodilla.foodpairingbackend.mapper;
 import com.kodilla.foodpairingbackend.domain.dto.CompositionDto;
 import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

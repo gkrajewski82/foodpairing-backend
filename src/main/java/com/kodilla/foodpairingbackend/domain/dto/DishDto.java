@@ -1,6 +1,5 @@
 package com.kodilla.foodpairingbackend.domain.dto;
 
-import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

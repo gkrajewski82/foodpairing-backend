@@ -3,7 +3,6 @@ package com.kodilla.foodpairingbackend.mapper;
 import com.kodilla.foodpairingbackend.domain.dto.CommentDto;
 import com.kodilla.foodpairingbackend.domain.entity.Comment;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class CommentMapper {
                 commentDto.getId(),
                 commentDto.getDescription(),
                 commentDto.getCreated(),
-                compositionMapper.mapToComposition(commentDto.getFoodComposition()),
+                compositionMapper.mapToComposition(commentDto.getComposition()),
                 ratingMapper.mapToRatingList(commentDto.getRatingList())
         );
     }
