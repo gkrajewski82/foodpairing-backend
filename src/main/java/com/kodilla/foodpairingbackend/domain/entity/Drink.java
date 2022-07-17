@@ -3,6 +3,8 @@ package com.kodilla.foodpairingbackend.domain.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,11 +44,4 @@ public class Drink {
             fetch = FetchType.LAZY
     )
     private List<DrinkIngredient> DrinkIngredientList;
-
-    public Drink(Long externalSystemId, String name, boolean alcoholic, String glass) {
-        this.externalSystemId = externalSystemId;
-        this.name = name;
-        this.alcoholic = alcoholic;
-        this.glass = glass;
-    }
 }

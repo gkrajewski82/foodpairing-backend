@@ -45,12 +45,4 @@ public class Dish {
             fetch = FetchType.EAGER
     )
     private List<Composition> composition;
-
-    public Dish(Long externalSystemId, String name, int readyInMinutes, int servings, String recipeUrl) {
-        this.externalSystemId = externalSystemId;
-        this.name = name;
-        this.readyInMinutes = readyInMinutes;
-        this.servings = servings;
-        this.recipeUrl = recipeUrl;
-    }
 }

@@ -44,11 +44,4 @@ public class Composition {
             fetch = FetchType.EAGER
     )
     private List<Comment> commentList;
-
-    public Composition(User user, Dish dish, Drink drink, Date created) {
-        this.user = user;
-        this.dish = dish;
-        this.drink = drink;
-        this.created = created;
-    }
 }

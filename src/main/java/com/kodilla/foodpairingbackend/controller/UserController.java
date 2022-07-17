@@ -18,18 +18,15 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers() {
-        List<User> userList = userService.getUsers();
-        return ResponseEntity.ok(userMapper.mapToUserDtoList(userList));
+        return ResponseEntity.ok(userService.getUsers());
     }
 
     @GetMapping(value = "{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long userId) throws UserNotFoundException {
-        User user = userService.getUser(userId);
-        return ResponseEntity.ok(userMapper.mapToUserDto(user));
+        return ResponseEntity.ok(userService.getUser(userId));
     }
 
     @DeleteMapping(value = "{userId}")
@@ -39,17 +36,13 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto) {
-        User user = userMapper.mapToUser(userDto);
-        userService.saveUser(user);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.saveUser(userDto));
     }
 
     @PutMapping
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
-        User user = userMapper.mapToUser(userDto);
-        User savedUser = userService.saveUser(user);
-        return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));
+        return ResponseEntity.ok(userService.saveUser(userDto));
     }
 
 }

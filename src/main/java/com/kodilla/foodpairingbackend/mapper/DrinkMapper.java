@@ -2,12 +2,15 @@ package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.DrinkDto;
 import com.kodilla.foodpairingbackend.domain.entity.Drink;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class DrinkMapper {
 
-    private DrinkIngredientMapper drinkIngredientMapper;
+    private final DrinkIngredientMapper drinkIngredientMapper;
 
     public Drink mapToDrink(final DrinkDto drinkDto) {
         return new Drink(

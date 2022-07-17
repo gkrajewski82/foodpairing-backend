@@ -31,9 +31,4 @@ public class Rating {
     @ManyToOne
     @JoinColumn(name = "COMMENT_ID")
     private Comment comment;
-
-    public Rating(int rating, Date created) {
-        this.value = rating;
-        this.created = created;
-    }
 }

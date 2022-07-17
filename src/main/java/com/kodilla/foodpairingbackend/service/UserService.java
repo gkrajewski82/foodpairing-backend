@@ -1,5 +1,6 @@
 package com.kodilla.foodpairingbackend.service;
 
+import com.kodilla.foodpairingbackend.domain.dto.UserDto;
 import com.kodilla.foodpairingbackend.domain.entity.User;
 import com.kodilla.foodpairingbackend.exception.UserNotFoundException;
 import com.kodilla.foodpairingbackend.mapper.UserMapper;
@@ -16,19 +17,23 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getUsers() {
+        List<User> userList = userRepository.findAll();
+        return userMapper.mapToUserDtoList(userList);
     }
 
-    public User getUser(final Long userId) throws UserNotFoundException {
-        return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+    public UserDto getUser(final Long userId) throws UserNotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        return userMapper.mapToUserDto(user);
     }
 
     public void deleteUser(final Long userId) {
         userRepository.deleteById(userId);
     }
 
-    public User saveUser(final User user) {
-        return userRepository.save(user);
+    public UserDto saveUser(final UserDto userDto) {
+        User user = userMapper.mapToUser(userDto);
+        User savedUser = userRepository.save(user);
+        return userMapper.mapToUserDto(savedUser);
     }
 }
