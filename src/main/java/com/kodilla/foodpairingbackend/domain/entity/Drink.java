@@ -41,5 +41,5 @@ public class Drink {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<DrinkIngredient> DrinkIngredientList;
+    private List<DrinkIngredient> drinkIngredientList;
 }

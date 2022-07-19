@@ -16,5 +16,5 @@ public class DrinkDto {
     private String name;
     private boolean alcoholic;
     private String glass;
-    private List<DrinkIngredientDto> DrinkIngredientList;
+    private List<DrinkIngredientDto> drinkIngredientList;
 }
