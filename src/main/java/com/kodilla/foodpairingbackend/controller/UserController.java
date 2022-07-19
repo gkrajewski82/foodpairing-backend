@@ -1,7 +1,9 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.UserDto;
+import com.kodilla.foodpairingbackend.domain.entity.User;
 import com.kodilla.foodpairingbackend.exception.UserNotFoundException;
+import com.kodilla.foodpairingbackend.mapper.UserMapper;
 import com.kodilla.foodpairingbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,15 +18,18 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
+        List<User> userList = userService.getUsers();
+        return ResponseEntity.ok(userMapper.mapToUserDtoList(userList));
     }
 
     @GetMapping(value = "{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long userId) throws UserNotFoundException {
-        return ResponseEntity.ok(userService.getUser(userId));
+        User user = userService.getUser(userId);
+        return ResponseEntity.ok(userMapper.mapToUserDto(user));
     }
 
     @DeleteMapping(value = "{userId}")
@@ -35,11 +40,15 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(userService.saveUser(userDto));
+        User user = userMapper.mapToUser(userDto);
+        User savedUser = userService.saveUser(user);
+        return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));
     }
 
     @PutMapping
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(userService.saveUser(userDto));
+        User user = userMapper.mapToUser(userDto);
+        User savedUser = userService.saveUser(user);
+        return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));
     }
 }

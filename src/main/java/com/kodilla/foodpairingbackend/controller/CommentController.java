@@ -1,7 +1,9 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.CommentDto;
+import com.kodilla.foodpairingbackend.domain.entity.Comment;
 import com.kodilla.foodpairingbackend.exception.CommentNotFoundException;
+import com.kodilla.foodpairingbackend.mapper.CommentMapper;
 import com.kodilla.foodpairingbackend.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,15 +18,18 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService commentService;
+    private final CommentMapper commentMapper;
 
     @GetMapping
     public ResponseEntity<List<CommentDto>> getComments() {
-        return ResponseEntity.ok(commentService.getComments());
+        List<Comment> commentList = commentService.getComments();
+        return ResponseEntity.ok(commentMapper.mapToCommentDtoList(commentList));
     }
 
     @GetMapping(value = "{commentId}")
     public ResponseEntity<CommentDto> getComment(@PathVariable Long commentId) throws CommentNotFoundException {
-        return ResponseEntity.ok(commentService.getComment(commentId));
+        Comment comment = commentService.getComment(commentId);
+        return ResponseEntity.ok(commentMapper.mapToCommentDto(comment));
     }
 
     @DeleteMapping(value = "{commentId}")
@@ -35,11 +40,15 @@ public class CommentController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto) {
-        return ResponseEntity.ok(commentService.saveComment(commentDto));
+        Comment comment = commentMapper.mapToComment(commentDto);
+        Comment savedComment = commentService.saveComment(comment);
+        return ResponseEntity.ok(commentMapper.mapToCommentDto(savedComment));
     }
 
     @PutMapping
     public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto) {
-        return ResponseEntity.ok(commentService.saveComment(commentDto));
+        Comment comment = commentMapper.mapToComment(commentDto);
+        Comment savedComment = commentService.saveComment(comment);
+        return ResponseEntity.ok(commentMapper.mapToCommentDto(savedComment));
     }
 }

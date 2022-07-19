@@ -1,6 +1,8 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.RatingDto;
+import com.kodilla.foodpairingbackend.domain.entity.Rating;
+import com.kodilla.foodpairingbackend.mapper.RatingMapper;
 import com.kodilla.foodpairingbackend.service.RatingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -15,10 +17,12 @@ import java.util.List;
 public class RatingController {
 
     private final RatingService ratingService;
+    private final RatingMapper ratingMapper;
 
     @GetMapping
     public ResponseEntity<List<RatingDto>> getRatings() {
-        return ResponseEntity.ok(ratingService.getRatings());
+        List<Rating> ratingList = ratingService.getRatings();
+        return ResponseEntity.ok(ratingMapper.mapToRatingDtoList(ratingList));
     }
 
     @DeleteMapping(value = "{ratingId}")
@@ -29,11 +33,15 @@ public class RatingController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RatingDto> createRating(@RequestBody RatingDto ratingDto) {
-        return ResponseEntity.ok(ratingService.saveRating(ratingDto));
+        Rating rating = ratingMapper.mapToRating(ratingDto);
+        Rating savedRating = ratingService.saveRating(rating);
+        return ResponseEntity.ok(ratingMapper.mapToRatingDto(savedRating));
     }
 
     @PutMapping
     public ResponseEntity<RatingDto> updateRating(@RequestBody RatingDto ratingDto) {
-        return ResponseEntity.ok(ratingService.saveRating(ratingDto));
+        Rating rating = ratingMapper.mapToRating(ratingDto);
+        Rating savedRating = ratingService.saveRating(rating);
+        return ResponseEntity.ok(ratingMapper.mapToRatingDto(savedRating));
     }
 }

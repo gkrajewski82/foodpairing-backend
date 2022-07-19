@@ -1,7 +1,9 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.DrinkIngredientDto;
+import com.kodilla.foodpairingbackend.domain.entity.DrinkIngredient;
 import com.kodilla.foodpairingbackend.exception.DrinkIngredientNotFoundException;
+import com.kodilla.foodpairingbackend.mapper.DrinkIngredientMapper;
 import com.kodilla.foodpairingbackend.service.DrinkIngredientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,15 +18,19 @@ import java.util.List;
 public class DrinkIngredientController {
 
     private final DrinkIngredientService drinkIngredientService;
+    private final DrinkIngredientMapper drinkIngredientMapper;
+
 
     @GetMapping
     public ResponseEntity<List<DrinkIngredientDto>> getDrinkIngredients() {
-        return ResponseEntity.ok(drinkIngredientService.getDrinkIngredients());
+        List<DrinkIngredient> drinkIngredientList = drinkIngredientService.getDrinkIngredients();
+        return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDtoList(drinkIngredientList));
     }
 
     @GetMapping(value = "{drinkIngredientId}")
     public ResponseEntity<DrinkIngredientDto> getDrinkIngredient(@PathVariable Long drinkIngredientId) throws DrinkIngredientNotFoundException {
-        return ResponseEntity.ok(drinkIngredientService.getDrinkIngredient(drinkIngredientId));
+        DrinkIngredient drinkIngredient = drinkIngredientService.getDrinkIngredient(drinkIngredientId);
+        return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDto(drinkIngredient));
     }
 
     @DeleteMapping(value = "{drinkIngredientId}")
@@ -35,11 +41,15 @@ public class DrinkIngredientController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DrinkIngredientDto> createDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) {
-        return ResponseEntity.ok(drinkIngredientService.saveDrinkIngredient(drinkIngredientDto));
+        DrinkIngredient drinkIngredient = drinkIngredientMapper.mapToDrinkIngredient(drinkIngredientDto);
+        DrinkIngredient savedDrinkIngredient = drinkIngredientService.saveDrinkIngredient(drinkIngredient);
+        return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDto(savedDrinkIngredient));
     }
 
     @PutMapping
     public ResponseEntity<DrinkIngredientDto> updateDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) {
-        return ResponseEntity.ok(drinkIngredientService.saveDrinkIngredient(drinkIngredientDto));
+        DrinkIngredient drinkIngredient = drinkIngredientMapper.mapToDrinkIngredient(drinkIngredientDto);
+        DrinkIngredient savedDrinkIngredient = drinkIngredientService.saveDrinkIngredient(drinkIngredient);
+        return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDto(savedDrinkIngredient));
     }
 }
