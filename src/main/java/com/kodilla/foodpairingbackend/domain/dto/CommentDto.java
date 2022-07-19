@@ -15,6 +15,6 @@ public class CommentDto {
     private Long id;
     private String description;
     private Date created;
-    private CompositionDto composition;
+    private Long compositionId;
     private List<RatingDto> ratingList;
 }

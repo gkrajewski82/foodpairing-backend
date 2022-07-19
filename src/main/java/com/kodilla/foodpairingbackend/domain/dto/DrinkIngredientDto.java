@@ -12,5 +12,5 @@ public class DrinkIngredientDto {
     private Long id;
     private String name;
     private String measure;
-    private DrinkDto drink;
+    private Long drinkId;
 }

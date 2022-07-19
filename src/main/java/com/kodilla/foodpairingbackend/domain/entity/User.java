@@ -39,4 +39,10 @@ public class User {
             fetch = FetchType.EAGER
     )
     private List<Composition> compositionList;
+
+    public User(String username, int status, String userKey) {
+        this.username = username;
+        this.status = status;
+        this.userKey = userKey;
+    }
 }

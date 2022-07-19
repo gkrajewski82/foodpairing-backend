@@ -14,5 +14,5 @@ public class RatingDto {
     private Long id;
     private int value;
     private Date created;
-    private CommentDto comment;
+    private Long commentId;
 }

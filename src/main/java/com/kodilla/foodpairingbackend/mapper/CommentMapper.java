@@ -30,7 +30,7 @@ public class CommentMapper {
                 comment.getId(),
                 comment.getDescription(),
                 comment.getCreated(),
-                compositionMapper.mapToCompositionDto(comment.getComposition()),
+                comment.getComposition().getId(),
                 ratingMapper.mapToRatingDtoList(comment.getRatingList())
         );
     }

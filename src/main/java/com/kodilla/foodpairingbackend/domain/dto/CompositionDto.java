@@ -13,9 +13,9 @@ import java.util.List;
 public class CompositionDto {
 
     private Long id;
-    private UserDto user;
-    private DishDto dish;
-    private DrinkDto drink;
+    private Long userId;
+    private Long dishId;
+    private Long drinkId;
     private Date created;
     private List<CommentDto> commentList;
 }

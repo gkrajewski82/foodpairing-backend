@@ -31,9 +31,9 @@ public class CompositionMapper {
     public CompositionDto mapToCompositionDto(final Composition composition) {
         return new CompositionDto(
                 composition.getId(),
-                userMapper.mapToUserDto(composition.getUser()),
-                dishMapper.mapToDishDto(composition.getDish()),
-                drinkMapper.mapToDrinkDto(composition.getDrink()),
+                composition.getUser().getId(),
+                composition.getDish().getId(),
+                composition.getDrink().getId(),
                 composition.getCreated(),
                 commentMapper.mapToCommentDtoList(composition.getCommentList())
         );

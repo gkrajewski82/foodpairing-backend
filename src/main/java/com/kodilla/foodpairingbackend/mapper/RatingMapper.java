@@ -28,7 +28,7 @@ public class RatingMapper {
                 rating.getId(),
                 rating.getValue(),
                 rating.getCreated(),
-                commentMapper.mapToCommentDto(rating.getComment())
+                rating.getComment().getId()
         );
     }
 

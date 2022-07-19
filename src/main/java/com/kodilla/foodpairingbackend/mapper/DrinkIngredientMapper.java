@@ -28,7 +28,7 @@ public class DrinkIngredientMapper {
                 drinkIngredient.getId(),
                 drinkIngredient.getName(),
                 drinkIngredient.getMeasure(),
-                drinkMapper.mapToDrinkDto(drinkIngredient.getDrink())
+                drinkIngredient.getDrink().getId()
         );
     }
 
