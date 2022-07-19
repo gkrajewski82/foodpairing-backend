@@ -22,7 +22,7 @@ public class Drink {
 
     @NotNull
     @Column(name = "EXTERNAL_SYSTEM_ID")
-    private Long externalSystemId;
+    private String externalSystemId;
 
     @NotNull
     @Column(name = "NAME")
@@ -30,7 +30,7 @@ public class Drink {
 
     @NotNull
     @Column(name = "ALCOHOLIC")
-    private boolean alcoholic;
+    private String alcoholic;
 
     @Column(name = "GLASS")
     private String glass;

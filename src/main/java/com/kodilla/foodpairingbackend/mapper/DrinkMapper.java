@@ -16,7 +16,7 @@ public class DrinkMapper {
                 drinkDto.getId(),
                 drinkDto.getExternalSystemId(),
                 drinkDto.getName(),
-                drinkDto.isAlcoholic(),
+                drinkDto.getAlcoholic(),
                 drinkDto.getGlass(),
                 drinkIngredientMapper.mapToDrinkIngredientList(drinkDto.getDrinkIngredientList())
         );
@@ -27,7 +27,7 @@ public class DrinkMapper {
                 drink.getId(),
                 drink.getExternalSystemId(),
                 drink.getName(),
-                drink.isAlcoholic(),
+                drink.getAlcoholic(),
                 drink.getGlass(),
                 drinkIngredientMapper.mapToDrinkIngredientDtoList(drink.getDrinkIngredientList())
         );

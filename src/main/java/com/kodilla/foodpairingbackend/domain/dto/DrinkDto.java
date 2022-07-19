@@ -12,9 +12,9 @@ import java.util.List;
 public class DrinkDto {
 
     private Long id;
-    private Long externalSystemId;
+    private String externalSystemId;
     private String name;
-    private boolean alcoholic;
+    private String alcoholic;
     private String glass;
     private List<DrinkIngredientDto> drinkIngredientList;
 }
