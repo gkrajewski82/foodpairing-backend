@@ -2,9 +2,12 @@ package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.RatingDto;
 import com.kodilla.foodpairingbackend.domain.entity.Rating;
+import com.kodilla.foodpairingbackend.exception.CommentNotFoundException;
+import com.kodilla.foodpairingbackend.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,14 +15,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RatingMapper {
 
-    private final CommentMapper commentMapper;
+    private final CommentService commentService;
 
-    public Rating mapToRating(final RatingDto ratingDto) {
+    public Rating mapToRating(final RatingDto ratingDto) throws CommentNotFoundException {
         return new Rating(
                 ratingDto.getId(),
                 ratingDto.getValue(),
                 ratingDto.getCreated(),
-                commentMapper.mapToComment(ratingDto.getComment())
+                commentService.getComment(ratingDto.getCommentId())
         );
     }
 
@@ -32,10 +35,13 @@ public class RatingMapper {
         );
     }
 
-    public List<Rating> mapToRatingList(final List<RatingDto> ratingDtoList) {
-        return ratingDtoList.stream()
-                .map(this::mapToRating)
-                .collect(Collectors.toList());
+    public List<Rating> mapToRatingList(final List<RatingDto> ratingDtoList) throws CommentNotFoundException {
+        List<Rating> ratingList = new ArrayList<>();
+        for (RatingDto ratingDto : ratingDtoList) {
+            Rating rating = mapToRating(ratingDto);
+            ratingList.add(rating);
+        }
+        return ratingList;
     }
 
     public List<RatingDto> mapToRatingDtoList(final List<Rating> ratingList) {

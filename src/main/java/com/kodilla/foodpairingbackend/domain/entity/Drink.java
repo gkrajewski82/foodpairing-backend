@@ -42,11 +42,4 @@ public class Drink {
             fetch = FetchType.LAZY
     )
     private List<DrinkIngredient> drinkIngredientList;
-
-    public Drink(String externalSystemId, String name, String alcoholic, String glass) {
-        this.externalSystemId = externalSystemId;
-        this.name = name;
-        this.alcoholic = alcoholic;
-        this.glass = glass;
-    }
 }

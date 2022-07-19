@@ -2,7 +2,7 @@ package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.UserDto;
 import com.kodilla.foodpairingbackend.domain.entity.User;
-import com.kodilla.foodpairingbackend.exception.UserNotFoundException;
+import com.kodilla.foodpairingbackend.exception.*;
 import com.kodilla.foodpairingbackend.mapper.UserMapper;
 import com.kodilla.foodpairingbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -39,14 +39,14 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         User user = userMapper.mapToUser(userDto);
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));
     }
 
     @PutMapping
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         User user = userMapper.mapToUser(userDto);
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));

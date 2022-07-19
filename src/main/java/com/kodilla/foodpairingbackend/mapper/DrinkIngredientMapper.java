@@ -2,9 +2,12 @@ package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.DrinkIngredientDto;
 import com.kodilla.foodpairingbackend.domain.entity.DrinkIngredient;
+import com.kodilla.foodpairingbackend.exception.DrinkNotFoundException;
+import com.kodilla.foodpairingbackend.service.DrinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,14 +15,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DrinkIngredientMapper {
 
-    private DrinkMapper drinkMapper;
+    private final DrinkService drinkService;
 
-    public DrinkIngredient mapToDrinkIngredient(final DrinkIngredientDto drinkIngredientDto) {
+    public DrinkIngredient mapToDrinkIngredient(final DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
         return new DrinkIngredient(
                 drinkIngredientDto.getId(),
                 drinkIngredientDto.getName(),
                 drinkIngredientDto.getMeasure(),
-                drinkMapper.mapToDrink(drinkIngredientDto.getDrink())
+                drinkService.getDrink(drinkIngredientDto.getDrinkId())
         );
     }
 
@@ -32,11 +35,15 @@ public class DrinkIngredientMapper {
         );
     }
 
-    public List<DrinkIngredient> mapToDrinkIngredientList(final List<DrinkIngredientDto> drinkIngredientDtoList) {
-        return drinkIngredientDtoList.stream()
-                .map(this::mapToDrinkIngredient)
-                .collect(Collectors.toList());
+    public List<DrinkIngredient> mapToDrinkIngredientList(final List<DrinkIngredientDto> drinkIngredientDtoList) throws DrinkNotFoundException {
+        List<DrinkIngredient> drinkIngredientList = new ArrayList<>();
+        for (DrinkIngredientDto drinkIngredientDto : drinkIngredientDtoList) {
+            DrinkIngredient drinkIngredient = mapToDrinkIngredient(drinkIngredientDto);
+            drinkIngredientList.add(drinkIngredient);
+        }
+        return drinkIngredientList;
     }
+
     public List<DrinkIngredientDto> mapToDrinkIngredientDtoList(final List<DrinkIngredient> drinkIngredientList) {
         return drinkIngredientList.stream()
                 .map(this::mapToDrinkIngredientDto)

@@ -40,10 +40,4 @@ public class Comment {
             fetch = FetchType.EAGER
     )
     private List<Rating> ratingList;
-
-    public Comment(String description, Date created, Composition composition) {
-        this.description = description;
-        this.created = created;
-        this.composition = composition;
-    }
 }

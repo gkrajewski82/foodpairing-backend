@@ -28,10 +28,4 @@ public class DrinkIngredient {
     @ManyToOne
     @JoinColumn(name = "DRINK_ID")
     private Drink drink;
-
-    public DrinkIngredient(String name, String measure, Drink drink) {
-        this.name = name;
-        this.measure = measure;
-        this.drink = drink;
-    }
 }

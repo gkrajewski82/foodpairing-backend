@@ -31,14 +31,14 @@ public class DrinkController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DrinkDto> saveDrinkInDb(@RequestBody DrinkDto drinkDto) {
+    public ResponseEntity<DrinkDto> saveDrinkInDb(@RequestBody DrinkDto drinkDto) throws DrinkNotFoundException {
         Drink drink = drinkMapper.mapToDrink(drinkDto);
         Drink savedDrink = drinkService.saveDrink(drink);
         return ResponseEntity.ok(drinkMapper.mapToDrinkDto(savedDrink));
     }
 
     @PutMapping
-    public ResponseEntity<DrinkDto> updateDrink(@RequestBody DrinkDto drinkDto) {
+    public ResponseEntity<DrinkDto> updateDrink(@RequestBody DrinkDto drinkDto) throws DrinkNotFoundException {
         Drink drink = drinkMapper.mapToDrink(drinkDto);
         Drink savedDrink = drinkService.saveDrink(drink);
         return ResponseEntity.ok(drinkMapper.mapToDrinkDto(savedDrink));

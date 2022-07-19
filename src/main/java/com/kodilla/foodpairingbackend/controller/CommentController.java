@@ -3,6 +3,7 @@ package com.kodilla.foodpairingbackend.controller;
 import com.kodilla.foodpairingbackend.domain.dto.CommentDto;
 import com.kodilla.foodpairingbackend.domain.entity.Comment;
 import com.kodilla.foodpairingbackend.exception.CommentNotFoundException;
+import com.kodilla.foodpairingbackend.exception.CompositionNotFoundException;
 import com.kodilla.foodpairingbackend.mapper.CommentMapper;
 import com.kodilla.foodpairingbackend.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -39,14 +40,14 @@ public class CommentController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto) {
+    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
         Comment comment = commentMapper.mapToComment(commentDto);
         Comment savedComment = commentService.saveComment(comment);
         return ResponseEntity.ok(commentMapper.mapToCommentDto(savedComment));
     }
 
     @PutMapping
-    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto) {
+    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
         Comment comment = commentMapper.mapToComment(commentDto);
         Comment savedComment = commentService.saveComment(comment);
         return ResponseEntity.ok(commentMapper.mapToCommentDto(savedComment));

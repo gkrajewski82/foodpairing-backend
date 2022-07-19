@@ -2,6 +2,7 @@ package com.kodilla.foodpairingbackend.mapper;
 
 import com.kodilla.foodpairingbackend.domain.dto.DishDto;
 import com.kodilla.foodpairingbackend.domain.entity.Dish;
+import com.kodilla.foodpairingbackend.exception.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ public class DishMapper {
 
     private final CompositionMapper compositionMapper;
 
-    public Dish mapToDish(DishDto dishDto) {
+    public Dish mapToDish(DishDto dishDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         return new Dish(
                 dishDto.getId(),
                 dishDto.getExternalSystemId(),

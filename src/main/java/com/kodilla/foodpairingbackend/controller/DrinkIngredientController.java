@@ -3,6 +3,7 @@ package com.kodilla.foodpairingbackend.controller;
 import com.kodilla.foodpairingbackend.domain.dto.DrinkIngredientDto;
 import com.kodilla.foodpairingbackend.domain.entity.DrinkIngredient;
 import com.kodilla.foodpairingbackend.exception.DrinkIngredientNotFoundException;
+import com.kodilla.foodpairingbackend.exception.DrinkNotFoundException;
 import com.kodilla.foodpairingbackend.mapper.DrinkIngredientMapper;
 import com.kodilla.foodpairingbackend.service.DrinkIngredientService;
 import lombok.RequiredArgsConstructor;
@@ -40,14 +41,14 @@ public class DrinkIngredientController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DrinkIngredientDto> createDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) {
+    public ResponseEntity<DrinkIngredientDto> createDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
         DrinkIngredient drinkIngredient = drinkIngredientMapper.mapToDrinkIngredient(drinkIngredientDto);
         DrinkIngredient savedDrinkIngredient = drinkIngredientService.saveDrinkIngredient(drinkIngredient);
         return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDto(savedDrinkIngredient));
     }
 
     @PutMapping
-    public ResponseEntity<DrinkIngredientDto> updateDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) {
+    public ResponseEntity<DrinkIngredientDto> updateDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
         DrinkIngredient drinkIngredient = drinkIngredientMapper.mapToDrinkIngredient(drinkIngredientDto);
         DrinkIngredient savedDrinkIngredient = drinkIngredientService.saveDrinkIngredient(drinkIngredient);
         return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDto(savedDrinkIngredient));
