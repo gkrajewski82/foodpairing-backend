@@ -36,7 +36,7 @@ public class User {
             targetEntity = Composition.class,
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     private List<Composition> compositionList;
 }

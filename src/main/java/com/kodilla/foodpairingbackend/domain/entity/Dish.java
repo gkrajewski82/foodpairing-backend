@@ -41,8 +41,8 @@ public class Dish {
     @OneToMany(
             targetEntity = Composition.class,
             mappedBy = "dish",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
     )
     private List<Composition> composition;
 }

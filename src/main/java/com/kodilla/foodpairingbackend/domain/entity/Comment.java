@@ -37,7 +37,7 @@ public class Comment {
             targetEntity = Rating.class,
             mappedBy = "comment",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     private List<Rating> ratingList;
 }
