@@ -1,14 +1,13 @@
 package com.kodilla.foodpairingbackend.client;
 
 import com.kodilla.foodpairingbackend.config.SpoonacularConfig;
-import com.kodilla.foodpairingbackend.domain.dto.DishDto;
+import com.kodilla.foodpairingbackend.domain.dto.SpoonacularResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -17,7 +16,7 @@ public class SpoonacularClient {
     private final RestTemplate restTemplate;
     private final SpoonacularConfig spoonacularConfig;
 
-    public List<DishDto> getRecipesFromApi(String searchName) {
+    public SpoonacularResultDto getDishesFromExternalApiDb(String searchName) {
         URI url = UriComponentsBuilder
                 .fromHttpUrl(spoonacularConfig.getSpoonacularEndpoint() + "/recipes/search")
                 .queryParam("apiKey", spoonacularConfig.getSpoonacularKey())
@@ -26,9 +25,7 @@ public class SpoonacularClient {
                 .encode()
                 .toUri();
 
-        DishDto[] response = restTemplate.getForObject(url, DishDto[].class);
-        return Optional.ofNullable(response)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
+        SpoonacularResultDto apiResponse = restTemplate.getForObject(url, SpoonacularResultDto.class);
+        return apiResponse;
     }
 }

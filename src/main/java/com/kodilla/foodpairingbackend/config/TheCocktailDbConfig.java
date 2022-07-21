@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class TheCocktailDbConfig {
 
-    @Value("${thecocktaildb.api.freekey}")
+    @Value("${thecocktaildb.api.endpoint.prod}")
     private String theCocktailDbEndpoint;
 
-    @Value("${thecocktaildb.api.endpoint.prod}")
+    @Value("${thecocktaildb.api.freekey}")
     private String theCocktailDbKey;
 }

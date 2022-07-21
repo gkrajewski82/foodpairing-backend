@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpoonacularConfig {
 
-    @Value("${spoonacular.api.key}")
+    @Value("${spoonacular.api.endpoint.prod}")
     private String spoonacularEndpoint;
 
-    @Value("${spoonacular.api.endpoint.prod}")
+    @Value("${spoonacular.api.key}")
     private String spoonacularKey;
 }
