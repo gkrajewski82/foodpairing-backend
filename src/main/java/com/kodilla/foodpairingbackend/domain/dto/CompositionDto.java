@@ -13,7 +13,6 @@ import java.util.List;
 public class CompositionDto {
 
     private Long id;
-    private Long userId;
     private Long dishId;
     private Long drinkId;
     private Date created;

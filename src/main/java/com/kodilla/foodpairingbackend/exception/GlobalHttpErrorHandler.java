@@ -9,11 +9,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException exception) {
-        return new ResponseEntity<>("User with given id doesn't exist", HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(DishNotFoundException.class)
     public ResponseEntity<Object> handleDishNotFoundException(DishNotFoundException exception) {
         return new ResponseEntity<>("Dish with given id doesn't exist", HttpStatus.BAD_REQUEST);

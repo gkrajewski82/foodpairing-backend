@@ -12,7 +12,7 @@ public class DishMapper {
 
     private final CompositionMapper compositionMapper;
 
-    public Dish mapToDish(DishDto dishDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException,
+    public Dish mapToDish(DishDto dishDto) throws DrinkNotFoundException, DishNotFoundException,
             CompositionNotFoundException, CommentNotFoundException {
         return new Dish(
                 dishDto.getId(),

@@ -22,10 +22,6 @@ public class Composition {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "USER_ID")
-    private User user;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "DISH_ID")
     private Dish dish;
 

@@ -39,16 +39,16 @@ public class CompositionController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CompositionDto> createComposition(@RequestBody CompositionDto compositionDto) throws UserNotFoundException,
-            DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<CompositionDto> createComposition(@RequestBody CompositionDto compositionDto) throws DrinkNotFoundException,
+            DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Composition composition = compositionMapper.mapToComposition(compositionDto);
         Composition savedComposition = compositionService.saveComposition(composition);
         return ResponseEntity.ok(compositionMapper.mapToCompositionDto(savedComposition));
     }
 
     @PutMapping
-    public ResponseEntity<CompositionDto> updateComposition(@RequestBody CompositionDto compositionDto) throws UserNotFoundException,
-            DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<CompositionDto> updateComposition(@RequestBody CompositionDto compositionDto) throws DrinkNotFoundException,
+            DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Composition composition = compositionMapper.mapToComposition(compositionDto);
         Composition savedComposition = compositionService.saveComposition(composition);
         return ResponseEntity.ok(compositionMapper.mapToCompositionDto(savedComposition));

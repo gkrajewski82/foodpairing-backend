@@ -5,7 +5,6 @@ import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import com.kodilla.foodpairingbackend.exception.*;
 import com.kodilla.foodpairingbackend.service.DishService;
 import com.kodilla.foodpairingbackend.service.DrinkService;
-import com.kodilla.foodpairingbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +16,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CompositionMapper {
 
-    private final UserService userService;
     private final DishService dishService;
     private final DrinkService drinkService;
     private final CommentMapper commentMapper;
 
-    public Composition mapToComposition(final CompositionDto compositionDto) throws UserNotFoundException,
-            DishNotFoundException, DrinkNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public Composition mapToComposition(final CompositionDto compositionDto) throws DishNotFoundException,
+            DrinkNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         return new Composition(
                 compositionDto.getId(),
-                userService.getUser(compositionDto.getUserId()),
                 dishService.getDish(compositionDto.getDishId()),
                 drinkService.getDrink(compositionDto.getDrinkId()),
                 compositionDto.getCreated(),
@@ -37,7 +34,6 @@ public class CompositionMapper {
     public CompositionDto mapToCompositionDto(final Composition composition) {
         return new CompositionDto(
                 composition.getId(),
-                composition.getUser().getId(),
                 composition.getDish().getId(),
                 composition.getDrink().getId(),
                 composition.getCreated(),
@@ -45,8 +41,8 @@ public class CompositionMapper {
         );
     }
 
-    public List<Composition> mapToCompositionList(final List<CompositionDto> compositionDtoList) throws UserNotFoundException,
-            DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public List<Composition> mapToCompositionList(final List<CompositionDto> compositionDtoList) throws DrinkNotFoundException,
+            DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         List<Composition> compositionList = new ArrayList<>();
         for (CompositionDto compositionDto : compositionDtoList) {
             Composition composition = mapToComposition(compositionDto);
