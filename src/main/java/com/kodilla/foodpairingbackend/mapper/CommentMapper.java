@@ -39,7 +39,8 @@ public class CommentMapper {
         );
     }
 
-    public List<Comment> mapToCommentList(final List<CommentDto> commentDtoList) throws CompositionNotFoundException, CommentNotFoundException {
+    public List<Comment> mapToCommentList(final List<CommentDto> commentDtoList) throws CompositionNotFoundException,
+            CommentNotFoundException {
         List<Comment> commentList = new ArrayList<>();
         for (CommentDto commentDto : commentDtoList) {
             Comment comment = mapToComment(commentDto);

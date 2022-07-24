@@ -39,14 +39,16 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws UserNotFoundException,
+            DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         User user = userMapper.mapToUser(userDto);
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));
     }
 
     @PutMapping
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) throws UserNotFoundException,
+            DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         User user = userMapper.mapToUser(userDto);
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(userMapper.mapToUserDto(savedUser));

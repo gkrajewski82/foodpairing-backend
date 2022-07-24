@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingbackend.service;
 
 import com.kodilla.foodpairingbackend.domain.entity.Composition;
+import com.kodilla.foodpairingbackend.domain.entity.Dish;
 import com.kodilla.foodpairingbackend.exception.CompositionNotFoundException;
 import com.kodilla.foodpairingbackend.repository.CompositionRepository;
 import lombok.RequiredArgsConstructor;

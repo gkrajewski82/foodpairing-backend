@@ -14,17 +14,7 @@ public class SpoonacularController {
     private final SpoonacularClient spoonacularClient;
 
     @GetMapping(value = "{searchName}")
-    public void getDishesFromSpoonacular(@PathVariable String searchName) {
-        SpoonacularResultDto spoonacularResult = spoonacularClient.getDishesFromExternalApiDb(searchName);
-
-        spoonacularResult.getResult().forEach(spoonacularDishDto -> {
-            System.out.println(spoonacularDishDto.getId() + ", " + spoonacularDishDto.getId() + ", " +
-                    spoonacularDishDto.getName() + ", " + spoonacularDishDto.getReadyInMinutes() +
-                    ", " + spoonacularDishDto.getServings() + ", " + spoonacularDishDto.getRecipeUrl());
-        });
-
+    public SpoonacularResultDto getDishesFromSpoonacular(@PathVariable String searchName) {
+        return spoonacularClient.getDishesFromExternalApiDb(searchName);
     }
-
-
-
 }

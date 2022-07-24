@@ -40,7 +40,8 @@ public class CommentController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto) throws CompositionNotFoundException,
+            CommentNotFoundException {
         Comment comment = commentMapper.mapToComment(commentDto);
         Comment savedComment = commentService.saveComment(comment);
         return ResponseEntity.ok(commentMapper.mapToCommentDto(savedComment));

@@ -31,14 +31,16 @@ public class DishController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DishDto> saveDishInDb(@RequestBody DishDto dishDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<DishDto> saveDishInDb(@RequestBody DishDto dishDto) throws UserNotFoundException,
+            DrinkNotFoundException,DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Dish dish = dishMapper.mapToDish(dishDto);
         Dish savedDish = dishService.saveDish(dish);
         return ResponseEntity.ok(dishMapper.mapToDishDto(savedDish));
     }
 
     @PutMapping
-    public ResponseEntity<DishDto> updateDish(@RequestBody DishDto dishDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public ResponseEntity<DishDto> updateDish(@RequestBody DishDto dishDto) throws UserNotFoundException,
+            DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Dish dish = dishMapper.mapToDish(dishDto);
         Dish savedDish = dishService.saveDish(dish);
         return ResponseEntity.ok(dishMapper.mapToDishDto(savedDish));

@@ -16,7 +16,8 @@ public class UserMapper {
 
     private final CompositionMapper compositionMapper;
 
-    public User mapToUser(final UserDto userDto) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public User mapToUser(final UserDto userDto) throws UserNotFoundException, DrinkNotFoundException,
+            DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         return new User(
                 userDto.getId(),
                 userDto.getUsername(),
@@ -36,7 +37,8 @@ public class UserMapper {
         );
     }
 
-    public List<User> mapToUserList(final List<UserDto> userDtoList) throws UserNotFoundException, DrinkNotFoundException, DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
+    public List<User> mapToUserList(final List<UserDto> userDtoList) throws UserNotFoundException,DrinkNotFoundException,
+            DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         List<User> userList = new ArrayList<>();
         for (UserDto userDto : userDtoList) {
             User user = mapToUser(userDto);

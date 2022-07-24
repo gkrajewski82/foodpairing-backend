@@ -17,12 +17,7 @@ public class TheCocktailDbController {
     private final TheCocktailDbClient theCocktailDbClient;
 
     @GetMapping("randomdrink")
-    public void getDrinkFromTheCocktailDb() {
-        TheCocktailDbResultDto theCocktailDbResult = theCocktailDbClient.getRandomDrinkFromExternalApiDb();
-
-        theCocktailDbResult.getResult().forEach(theCocktailDbDrinkDto -> {
-            System.out.println(theCocktailDbDrinkDto.getId() + ", " + theCocktailDbDrinkDto.getName() + ", " +
-                    theCocktailDbDrinkDto.getAlcoholic() + ", " + theCocktailDbDrinkDto.getGlass());
-        });
+    public TheCocktailDbResultDto getDrinkFromTheCocktailDb() {
+        return theCocktailDbClient.getRandomDrinkFromExternalApiDb();
     }
 }

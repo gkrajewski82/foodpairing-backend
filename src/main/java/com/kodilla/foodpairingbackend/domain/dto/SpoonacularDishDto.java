@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class SpoonacularDishDto {
 
     @JsonProperty("id")
-    private Long id;
+    private Long externalSystemId;
 
     @JsonProperty("title")
     private String name;
