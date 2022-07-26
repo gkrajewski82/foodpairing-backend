@@ -16,11 +16,11 @@ public class SpoonacularClient {
     private final RestTemplate restTemplate;
     private final SpoonacularConfig spoonacularConfig;
 
-    public SpoonacularResultDto getDishesFromExternalApiDb(String searchName) {
+    public SpoonacularResultDto getDishesFromExternalApiDb(String nameFragment) {
         URI url = UriComponentsBuilder
                 .fromHttpUrl(spoonacularConfig.getSpoonacularEndpoint() + "/recipes/search")
                 .queryParam("apiKey", spoonacularConfig.getSpoonacularKey())
-                .queryParam("query", searchName)
+                .queryParam("query", nameFragment)
                 .build()
                 .encode()
                 .toUri();

@@ -1,9 +1,11 @@
 package com.kodilla.foodpairingbackend.controller;
 
-import com.kodilla.foodpairingbackend.client.SpoonacularClient;
-import com.kodilla.foodpairingbackend.domain.dto.SpoonacularResultDto;
+import com.kodilla.foodpairingbackend.domain.dto.SpoonacularDishDto;
+import com.kodilla.foodpairingbackend.service.SpoonacularService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/foodpairing/v1/spoonacular/dishes")
@@ -11,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class SpoonacularController {
 
-    private final SpoonacularClient spoonacularClient;
+    private final SpoonacularService spoonacularService;
 
     @GetMapping(value = "{searchName}")
-    public SpoonacularResultDto getDishesFromSpoonacular(@PathVariable String searchName) {
-        return spoonacularClient.getDishesFromExternalApiDb(searchName);
+    public List<SpoonacularDishDto> getDishesFromSpoonacular(@PathVariable String searchName) {
+        return spoonacularService.getSpoonacularDishes(searchName);
     }
 }
