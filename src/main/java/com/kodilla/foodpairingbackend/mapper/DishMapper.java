@@ -21,7 +21,7 @@ public class DishMapper {
                 dishDto.getReadyInMinutes(),
                 dishDto.getServings(),
                 dishDto.getRecipeUrl(),
-                compositionMapper.mapToCompositionList(dishDto.getComposition())
+                compositionMapper.mapToCompositionList(dishDto.getCompositionList())
         );
     }
 
@@ -33,7 +33,7 @@ public class DishMapper {
                 dish.getReadyInMinutes(),
                 dish.getServings(),
                 dish.getRecipeUrl(),
-                compositionMapper.mapToCompositionDtoList(dish.getComposition())
+                compositionMapper.mapToCompositionDtoList(dish.getCompositionList())
         );
     }
 }
