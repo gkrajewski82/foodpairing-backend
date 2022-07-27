@@ -44,5 +44,5 @@ public class Dish {
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
-    private List<Composition> compositionList;
+    private List<Composition> composition;
 }

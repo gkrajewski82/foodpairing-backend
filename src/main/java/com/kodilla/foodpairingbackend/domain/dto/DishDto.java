@@ -17,5 +17,5 @@ public class DishDto {
     private int readyInMinutes;
     private int servings;
     private String recipeUrl;
-    private List<CompositionDto> compositionList;
+    private List<CompositionDto> composition;
 }
