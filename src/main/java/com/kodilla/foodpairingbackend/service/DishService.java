@@ -6,11 +6,17 @@ import com.kodilla.foodpairingbackend.repository.DishRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class DishService {
 
     private final DishRepository dishRepository;
+
+    public List<Dish> getDishes() {
+        return dishRepository.findAll();
+    }
 
     public Dish getDish(final Long dishId) throws DishNotFoundException {
         return dishRepository.findById(dishId).orElseThrow(DishNotFoundException::new);

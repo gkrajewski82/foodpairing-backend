@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/foodpairing/v1/dishes")
 @RequiredArgsConstructor
@@ -17,6 +19,12 @@ public class DishController {
 
     private final DishService dishService;
     private final DishMapper dishMapper;
+
+    @GetMapping
+    public ResponseEntity<List<DishDto>> getDishes() {
+        List<Dish> dishList = dishService.getDishes();
+        return ResponseEntity.ok(dishMapper.mapToDishDtoList(dishList));
+    }
 
     @GetMapping(value = "{dishId}")
     public ResponseEntity<DishDto> getDish(@PathVariable Long dishId) throws DishNotFoundException {

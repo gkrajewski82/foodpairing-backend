@@ -1,10 +1,16 @@
 package com.kodilla.foodpairingbackend.mapper;
 
+import com.kodilla.foodpairingbackend.domain.dto.DishDto;
 import com.kodilla.foodpairingbackend.domain.dto.DrinkDto;
+import com.kodilla.foodpairingbackend.domain.entity.Dish;
 import com.kodilla.foodpairingbackend.domain.entity.Drink;
 import com.kodilla.foodpairingbackend.exception.DrinkNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +38,20 @@ public class DrinkMapper {
                 drink.getGlass(),
                 drinkIngredientMapper.mapToDrinkIngredientDtoList(drink.getDrinkIngredientList())
         );
+    }
+
+    public List<Drink> mapToDrinkList(final List<DrinkDto> drinkDtoList) throws DrinkNotFoundException {
+        List<Drink> drinkList = new ArrayList<>();
+        for (DrinkDto drinkDto : drinkDtoList) {
+            Drink drink = mapToDrink(drinkDto);
+            drinkList.add(drink);
+        }
+        return drinkList;
+    }
+
+    public List<DrinkDto> mapToDrinkDtoList(final List<Drink> drinkList) {
+        return drinkList.stream()
+                .map(this::mapToDrinkDto)
+                .collect(Collectors.toList());
     }
 }
