@@ -25,7 +25,7 @@ public class Composition {
     @JoinColumn(name = "DISH_ID")
     private Dish dish;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "DRINK_ID")
     private Drink drink;
 
