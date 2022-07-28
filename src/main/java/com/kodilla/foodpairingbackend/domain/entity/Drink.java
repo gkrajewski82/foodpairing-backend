@@ -35,6 +35,9 @@ public class Drink {
     @Column(name = "GLASS")
     private String glass;
 
+    @Column(name = "INSTRUCTIONS")
+    private String instructions;
+
     @OneToMany(
             targetEntity = DrinkIngredient.class,
             mappedBy = "drink",

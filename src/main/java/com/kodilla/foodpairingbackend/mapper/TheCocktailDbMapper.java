@@ -18,6 +18,7 @@ public class TheCocktailDbMapper {
                 theCocktailDbDrinkDto.getName(),
                 theCocktailDbDrinkDto.getAlcoholic(),
                 theCocktailDbDrinkDto.getGlass(),
+                theCocktailDbDrinkDto.getInstructions(),
                 mapToDrinkIngredientList(theCocktailDbDrinkDto)
         );
     }

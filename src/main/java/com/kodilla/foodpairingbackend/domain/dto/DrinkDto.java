@@ -16,5 +16,6 @@ public class DrinkDto {
     private String name;
     private String alcoholic;
     private String glass;
+    private String instructions;
     private List<DrinkIngredientDto> drinkIngredientList;
 }
