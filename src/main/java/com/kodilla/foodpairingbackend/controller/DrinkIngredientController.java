@@ -28,10 +28,10 @@ public class DrinkIngredientController {
         return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDtoList(drinkIngredientList));
     }
 
-    @GetMapping(value = "{drinkIngredientId}")
-    public ResponseEntity<DrinkIngredientDto> getDrinkIngredient(@PathVariable Long drinkIngredientId) throws DrinkIngredientNotFoundException {
-        DrinkIngredient drinkIngredient = drinkIngredientService.getDrinkIngredient(drinkIngredientId);
-        return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDto(drinkIngredient));
+    @GetMapping(value = "{drinkId}")
+    public ResponseEntity<List<DrinkIngredientDto>> getDrinkIngredientsForDrink(@PathVariable Long drinkId) {
+        List<DrinkIngredient> drinkIngredientList = drinkIngredientService.getDrinkIngredientsForDrink(drinkId);
+        return ResponseEntity.ok(drinkIngredientMapper.mapToDrinkIngredientDtoList(drinkIngredientList));
     }
 
     @DeleteMapping(value = "{drinkIngredientId}")

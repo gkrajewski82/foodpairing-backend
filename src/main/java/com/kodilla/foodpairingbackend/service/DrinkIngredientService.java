@@ -6,6 +6,7 @@ import com.kodilla.foodpairingbackend.repository.DrinkIngredientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,15 @@ public class DrinkIngredientService {
         return drinkIngredientRepository.findAll();
     }
 
-    public DrinkIngredient getDrinkIngredient(final Long drinkIngredientId) throws DrinkIngredientNotFoundException {
-        return drinkIngredientRepository.findById(drinkIngredientId).orElseThrow(DrinkIngredientNotFoundException::new);
+    public List<DrinkIngredient> getDrinkIngredientsForDrink(final Long drinkId) {
+        List<DrinkIngredient> allDrinkIngredientList = drinkIngredientRepository.findAll();
+        List<DrinkIngredient> selectedDrinkIngredientList = new ArrayList<>();
+        for (DrinkIngredient ingredient : allDrinkIngredientList) {
+            if (ingredient.getDrink().getId().equals(drinkId)) {
+                selectedDrinkIngredientList.add(ingredient);
+            }
+        }
+        return selectedDrinkIngredientList;
     }
 
     public void deleteDrinkIngredient(final Long drinkIngredientId) {
