@@ -16,5 +16,5 @@ public class CommentDto {
     private String description;
     private Date created;
     private Long compositionId;
-    private List<RatingDto> ratingList;
+    private List<ReactionDto> reactionList;
 }

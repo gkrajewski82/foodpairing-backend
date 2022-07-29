@@ -34,8 +34,8 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>("Comment with given id doesn't exist", HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(RatingNotFoundException.class)
-    public ResponseEntity<Object> handleRatingNotFoundException(RatingNotFoundException exception) {
+    @ExceptionHandler(ReactionNotFoundException.class)
+    public ResponseEntity<Object> handleReactionNotFoundException(ReactionNotFoundException exception) {
         return new ResponseEntity<>("Rating with given id doesn't exist", HttpStatus.BAD_REQUEST);
     }
 }

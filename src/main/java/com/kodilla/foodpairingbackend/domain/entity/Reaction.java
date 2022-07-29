@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Entity(name = "RATINGS")
-public class Rating {
+public class Reaction {
 
     @Id
     @GeneratedValue

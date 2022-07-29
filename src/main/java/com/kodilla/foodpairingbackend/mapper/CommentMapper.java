@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class CommentMapper {
 
     private final CompositionService compositionService;
-    private final RatingMapper ratingMapper;
+    private final ReactionMapper reactionMapper;
 
     public Comment mapToComment(final CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
         return new Comment(
@@ -25,7 +25,7 @@ public class CommentMapper {
                 commentDto.getDescription(),
                 commentDto.getCreated(),
                 compositionService.getComposition(commentDto.getCompositionId()),
-                ratingMapper.mapToRatingList(commentDto.getRatingList())
+                reactionMapper.mapToReactionList(commentDto.getReactionList())
         );
     }
 
@@ -35,7 +35,7 @@ public class CommentMapper {
                 comment.getDescription(),
                 comment.getCreated(),
                 comment.getComposition().getId(),
-                ratingMapper.mapToRatingDtoList(comment.getRatingList())
+                reactionMapper.mapToReactionDtoList(comment.getReactionList())
         );
     }
 

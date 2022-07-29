@@ -9,7 +9,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class RatingDto {
+public class ReactionDto {
 
     private Long id;
     private int value;

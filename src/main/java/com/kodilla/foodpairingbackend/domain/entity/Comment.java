@@ -34,10 +34,10 @@ public class Comment {
     private Composition composition;
 
     @OneToMany(
-            targetEntity = Rating.class,
+            targetEntity = Reaction.class,
             mappedBy = "comment",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Rating> ratingList;
+    private List<Reaction> reactionList;
 }
