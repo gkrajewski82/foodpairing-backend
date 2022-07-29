@@ -119,24 +119,4 @@ public class TheCocktailDbDrinkDto {
 
     @JsonProperty("strMeasure15")
     private String measure15;
-
-    public List<DrinkIngredientDto> createDrinkIngredientList() {
-        List<DrinkIngredientDto> drinkIngredientList = new ArrayList<>();
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient1(), getMeasure1(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient2(), getMeasure2(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient3(), getMeasure3(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient4(), getMeasure4(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient5(), getMeasure5(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient6(), getMeasure6(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient7(), getMeasure7(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient8(), getMeasure8(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient9(), getMeasure9(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient10(), getMeasure10(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient11(), getMeasure11(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient12(), getMeasure12(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient13(), getMeasure13(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient14(), getMeasure14(), null));
-        drinkIngredientList.add(new DrinkIngredientDto(null, getIngredient15(), getMeasure15(), null));
-        return drinkIngredientList;
-    }
 }
