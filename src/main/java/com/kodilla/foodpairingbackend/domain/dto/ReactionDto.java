@@ -12,7 +12,7 @@ import java.util.Date;
 public class ReactionDto {
 
     private Long id;
-    private int value;
+    private String description;
     private Date created;
     private Long commentId;
 }

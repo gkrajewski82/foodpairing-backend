@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "RATINGS")
+@Entity(name = "REACTIONS")
 public class Reaction {
 
     @Id
@@ -21,8 +21,8 @@ public class Reaction {
     private Long id;
 
     @NotNull
-    @Column(name = "VALUE")
-    private int value;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     @NotNull
     @Column(name = "CREATED")

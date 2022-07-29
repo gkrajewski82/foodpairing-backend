@@ -20,7 +20,7 @@ public class ReactionMapper {
     public Reaction mapToReaction(final ReactionDto reactionDto) throws CommentNotFoundException {
         return new Reaction(
                 reactionDto.getId(),
-                reactionDto.getValue(),
+                reactionDto.getDescription(),
                 reactionDto.getCreated(),
                 commentService.getComment(reactionDto.getCommentId())
         );
@@ -29,7 +29,7 @@ public class ReactionMapper {
     public ReactionDto mapToReactionDto(final Reaction reaction) {
         return new ReactionDto(
                 reaction.getId(),
-                reaction.getValue(),
+                reaction.getDescription(),
                 reaction.getCreated(),
                 reaction.getComment().getId()
         );
