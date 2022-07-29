@@ -6,6 +6,7 @@ import com.kodilla.foodpairingbackend.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +17,17 @@ public class CommentService {
 
     public List<Comment> getComments() {
         return commentRepository.findAll();
+    }
+
+    public List<Comment> getCommentsForComposition(final Long compositionId) {
+        List<Comment> allCommentList = commentRepository.findAll();
+        List<Comment> filteredCommentList = new ArrayList<>();
+        for (Comment comment : allCommentList) {
+            if (comment.getComposition().getId().equals(compositionId)) {
+                filteredCommentList.add(comment);
+            }
+        }
+        return filteredCommentList;
     }
 
     public Comment getComment(final Long commentId) throws CommentNotFoundException {

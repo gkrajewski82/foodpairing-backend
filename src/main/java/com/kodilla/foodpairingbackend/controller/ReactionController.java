@@ -26,6 +26,12 @@ public class ReactionController {
         return ResponseEntity.ok(reactionMapper.mapToReactionDtoList(reactionList));
     }
 
+    @GetMapping(value = "{commentId}")
+    public ResponseEntity<List<ReactionDto>> getReactionsForComment(@PathVariable Long commentId) {
+        List<Reaction> reactionList = reactionService.getReactionsForComment(commentId);
+        return ResponseEntity.ok(reactionMapper.mapToReactionDtoList(reactionList));
+    }
+
     @DeleteMapping(value = "{reactionId}")
     public ResponseEntity<Void> deleteReaction(@PathVariable Long reactionId) {
         reactionService.deleteReaction(reactionId);

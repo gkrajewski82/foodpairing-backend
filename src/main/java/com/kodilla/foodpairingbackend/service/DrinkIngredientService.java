@@ -21,13 +21,13 @@ public class DrinkIngredientService {
 
     public List<DrinkIngredient> getDrinkIngredientsForDrink(final Long drinkId) {
         List<DrinkIngredient> allDrinkIngredientList = drinkIngredientRepository.findAll();
-        List<DrinkIngredient> selectedDrinkIngredientList = new ArrayList<>();
+        List<DrinkIngredient> filteredDrinkIngredientList = new ArrayList<>();
         for (DrinkIngredient ingredient : allDrinkIngredientList) {
             if (ingredient.getDrink().getId().equals(drinkId)) {
-                selectedDrinkIngredientList.add(ingredient);
+                filteredDrinkIngredientList.add(ingredient);
             }
         }
-        return selectedDrinkIngredientList;
+        return filteredDrinkIngredientList;
     }
 
     public void deleteDrinkIngredient(final Long drinkIngredientId) {

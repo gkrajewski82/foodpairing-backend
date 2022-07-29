@@ -27,10 +27,10 @@ public class CommentController {
         return ResponseEntity.ok(commentMapper.mapToCommentDtoList(commentList));
     }
 
-    @GetMapping(value = "{commentId}")
-    public ResponseEntity<CommentDto> getComment(@PathVariable Long commentId) throws CommentNotFoundException {
-        Comment comment = commentService.getComment(commentId);
-        return ResponseEntity.ok(commentMapper.mapToCommentDto(comment));
+    @GetMapping(value = "{compositionId}")
+    public ResponseEntity<List<CommentDto>> getCommentsForComposition(@PathVariable Long compositionId) {
+        List<Comment> commentList = commentService.getCommentsForComposition(compositionId);
+        return ResponseEntity.ok(commentMapper.mapToCommentDtoList(commentList));
     }
 
     @DeleteMapping(value = "{commentId}")
