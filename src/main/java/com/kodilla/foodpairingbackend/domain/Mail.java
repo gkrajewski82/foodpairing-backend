@@ -1,6 +1,5 @@
 package com.kodilla.foodpairingbackend.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
