@@ -1,5 +1,7 @@
 package com.kodilla.foodpairingbackend.facade;
 
+import com.kodilla.foodpairingbackend.config.AdminConfig;
+import com.kodilla.foodpairingbackend.domain.Mail;
 import com.kodilla.foodpairingbackend.domain.dto.CompositionDto;
 import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import com.kodilla.foodpairingbackend.exception.CommentNotFoundException;
@@ -8,6 +10,7 @@ import com.kodilla.foodpairingbackend.exception.DishNotFoundException;
 import com.kodilla.foodpairingbackend.exception.DrinkNotFoundException;
 import com.kodilla.foodpairingbackend.mapper.CompositionMapper;
 import com.kodilla.foodpairingbackend.service.CompositionService;
+import com.kodilla.foodpairingbackend.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +22,8 @@ public class CompositionFacade {
 
     private final CompositionService compositionService;
     private final CompositionMapper compositionMapper;
+    private final EmailService emailService;
+    private final AdminConfig adminConfig;
 
     public List<CompositionDto> getCompositions() {
         List<Composition> compositionList = compositionService.getCompositions();
@@ -38,6 +43,13 @@ public class CompositionFacade {
             DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Composition composition = compositionMapper.mapToComposition(compositionDto);
         Composition savedComposition = compositionService.saveComposition(composition);
+        emailService.send(new Mail(
+                        adminConfig.getAdminMail(),
+                        "Foodpairing: New Composition appeared",
+                        "New Composition which ID is " + composition.getId().toString() + " has been created in \"FOODPAIRING\" application",
+                        null
+                )
+        );
         return compositionMapper.mapToCompositionDto(savedComposition);
     }
 
@@ -47,21 +59,4 @@ public class CompositionFacade {
         Composition savedComposition = compositionService.saveComposition(composition);
         return compositionMapper.mapToCompositionDto(savedComposition);
     }
-
-
-/*    CompositionService compositionService;
-    EmailService emailService;
-    private final AdminConfig adminConfig;
-
-    public Composition saveCompositionAndSendEmail(final Composition composition) {
-        Composition savedComposition = compositionService.saveComposition(composition);
-        emailService.send(new Mail(
-                adminConfig.getAdminMail(),
-                "Foodpairing: New Composition appeared",
-                "New Composition: " + composition.getId().toString() + " has been created in \"FOODPAIRING\" application",
-                null
-                )
-        );
-        return savedComposition;
-    }*/
 }
