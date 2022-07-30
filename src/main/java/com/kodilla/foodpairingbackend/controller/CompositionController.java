@@ -3,8 +3,7 @@ package com.kodilla.foodpairingbackend.controller;
 import com.kodilla.foodpairingbackend.domain.dto.CompositionDto;
 import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import com.kodilla.foodpairingbackend.exception.*;
-import com.kodilla.foodpairingbackend.mapper.CompositionMapper;
-import com.kodilla.foodpairingbackend.service.CompositionService;
+import com.kodilla.foodpairingbackend.facade.CompositionFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,40 +16,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompositionController {
 
-    private final CompositionService compositionService;
-    private final CompositionMapper compositionMapper;
+    private final CompositionFacade compositionFacade;
 
     @GetMapping
-    public ResponseEntity<List<CompositionDto>> getComposition() {
-        List<Composition> compositionList = compositionService.getCompositions();
-        return ResponseEntity.ok(compositionMapper.mapToCompositionDtoList(compositionList));
+    public ResponseEntity<List<CompositionDto>> getCompositions() {
+        return ResponseEntity.ok(compositionFacade.getCompositions());
     }
 
     @GetMapping(value = "{compositionId}")
     public ResponseEntity<CompositionDto> getComposition(@PathVariable Long compositionId) throws CompositionNotFoundException {
-        Composition composition = compositionService.getComposition(compositionId);
-        return ResponseEntity.ok(compositionMapper.mapToCompositionDto(composition));
+        return ResponseEntity.ok(compositionFacade.getComposition(compositionId));
     }
 
     @DeleteMapping(value = "{compositionId}")
     public ResponseEntity<Void> deleteComposition(@PathVariable Long compositionId) {
-        compositionService.deleteComposition(compositionId);
+        compositionFacade.deleteComposition(compositionId);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CompositionDto> createComposition(@RequestBody CompositionDto compositionDto) throws DrinkNotFoundException,
             DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
-        Composition composition = compositionMapper.mapToComposition(compositionDto);
-        Composition savedComposition = compositionService.saveComposition(composition);
-        return ResponseEntity.ok(compositionMapper.mapToCompositionDto(savedComposition));
+        return ResponseEntity.ok(compositionFacade.createComposition(compositionDto));
     }
 
     @PutMapping
     public ResponseEntity<CompositionDto> updateComposition(@RequestBody CompositionDto compositionDto) throws DrinkNotFoundException,
             DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
-        Composition composition = compositionMapper.mapToComposition(compositionDto);
-        Composition savedComposition = compositionService.saveComposition(composition);
-        return ResponseEntity.ok(compositionMapper.mapToCompositionDto(savedComposition));
+        return ResponseEntity.ok(compositionFacade.updateComposition(compositionDto));
     }
 }

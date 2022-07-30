@@ -1,10 +1,8 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.ReactionDto;
-import com.kodilla.foodpairingbackend.domain.entity.Reaction;
 import com.kodilla.foodpairingbackend.exception.CommentNotFoundException;
-import com.kodilla.foodpairingbackend.mapper.ReactionMapper;
-import com.kodilla.foodpairingbackend.service.ReactionService;
+import com.kodilla.foodpairingbackend.facade.ReactionFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,38 +15,31 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReactionController {
 
-    private final ReactionService reactionService;
-    private final ReactionMapper reactionMapper;
+    private final ReactionFacade reactionFacade;
 
     @GetMapping
     public ResponseEntity<List<ReactionDto>> getReactions() {
-        List<Reaction> reactionList = reactionService.getReactions();
-        return ResponseEntity.ok(reactionMapper.mapToReactionDtoList(reactionList));
+        return ResponseEntity.ok(reactionFacade.getReactions());
     }
 
     @GetMapping(value = "{commentId}")
     public ResponseEntity<List<ReactionDto>> getReactionsForComment(@PathVariable Long commentId) {
-        List<Reaction> reactionList = reactionService.getReactionsForComment(commentId);
-        return ResponseEntity.ok(reactionMapper.mapToReactionDtoList(reactionList));
+        return ResponseEntity.ok(reactionFacade.getReactionsForComment(commentId));
     }
 
     @DeleteMapping(value = "{reactionId}")
     public ResponseEntity<Void> deleteReaction(@PathVariable Long reactionId) {
-        reactionService.deleteReaction(reactionId);
+        reactionFacade.deleteReaction(reactionId);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ReactionDto> createReaction(@RequestBody ReactionDto reactionDto) throws CommentNotFoundException {
-        Reaction reaction = reactionMapper.mapToReaction(reactionDto);
-        Reaction savedReaction = reactionService.saveReaction(reaction);
-        return ResponseEntity.ok(reactionMapper.mapToReactionDto(savedReaction));
+        return ResponseEntity.ok(reactionFacade.createReaction(reactionDto));
     }
 
     @PutMapping
     public ResponseEntity<ReactionDto> updateReaction(@RequestBody ReactionDto reactionDto) throws CommentNotFoundException {
-        Reaction reaction = reactionMapper.mapToReaction(reactionDto);
-        Reaction savedReaction = reactionService.saveReaction(reaction);
-        return ResponseEntity.ok(reactionMapper.mapToReactionDto(savedReaction));
+        return ResponseEntity.ok(reactionFacade.updateReaction(reactionDto));
     }
 }
