@@ -2,7 +2,6 @@ package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.DrinkIngredientDto;
 import com.kodilla.foodpairingbackend.domain.entity.DrinkIngredient;
-import com.kodilla.foodpairingbackend.exception.DrinkIngredientNotFoundException;
 import com.kodilla.foodpairingbackend.exception.DrinkNotFoundException;
 import com.kodilla.foodpairingbackend.mapper.DrinkIngredientMapper;
 import com.kodilla.foodpairingbackend.service.DrinkIngredientService;

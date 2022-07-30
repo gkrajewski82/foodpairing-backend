@@ -1,6 +1,5 @@
 package com.kodilla.foodpairingbackend.repository;
 
-import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import com.kodilla.foodpairingbackend.domain.entity.Drink;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

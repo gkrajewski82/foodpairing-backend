@@ -6,7 +6,6 @@ import com.kodilla.foodpairingbackend.exception.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,16 +38,6 @@ public class DishMapper {
                 dish.getRecipeUrl(),
                 compositionMapper.mapToCompositionDtoList(dish.getCompositionList())
         );
-    }
-
-    public List<Dish> mapToDishList(final List<DishDto> dishDtoList) throws DrinkNotFoundException,
-            CompositionNotFoundException, DishNotFoundException, CommentNotFoundException {
-        List<Dish> dishList = new ArrayList<>();
-        for (DishDto dishDto : dishDtoList) {
-            Dish dish = mapToDish(dishDto);
-            dishList.add(dish);
-        }
-        return dishList;
     }
 
     public List<DishDto> mapToDishDtoList(final List<Dish> dishList) {
