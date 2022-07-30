@@ -20,6 +20,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompositionFacade {
 
+    private static final String SUBJECT = "Foodpairing: New Composition appeared";
+    private static final String MESSAGE_BEGINNING = "New Composition which ID is ";
+    private static final String MESSAGE_ENDING = " has been created in \"FOODPAIRING\" application";
     private final CompositionService compositionService;
     private final CompositionMapper compositionMapper;
     private final EmailService emailService;
@@ -43,13 +46,12 @@ public class CompositionFacade {
             DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Composition composition = compositionMapper.mapToComposition(compositionDto);
         Composition savedComposition = compositionService.saveComposition(composition);
-        emailService.send(new Mail(
-                        adminConfig.getAdminMail(),
-                        "Foodpairing: New Composition appeared",
-                        "New Composition which ID is " + composition.getId().toString() + " has been created in \"FOODPAIRING\" application",
-                        null
-                )
-        );
+        Mail mail = Mail.builder()
+                .mailTo(adminConfig.getAdminMail())
+                .subject(SUBJECT)
+                .message(MESSAGE_BEGINNING + composition.getId().toString() + MESSAGE_ENDING)
+                .build();
+        emailService.send(mail);
         return compositionMapper.mapToCompositionDto(savedComposition);
     }
 
@@ -60,3 +62,6 @@ public class CompositionFacade {
         return compositionMapper.mapToCompositionDto(savedComposition);
     }
 }
+
+
+
