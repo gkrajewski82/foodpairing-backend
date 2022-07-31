@@ -18,21 +18,23 @@ public class DrinkIngredientMapper {
     private final DrinkService drinkService;
 
     public DrinkIngredient mapToDrinkIngredient(final DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
-        return new DrinkIngredient(
-                drinkIngredientDto.getId(),
-                drinkIngredientDto.getName(),
-                drinkIngredientDto.getMeasure(),
-                drinkService.getDrink(drinkIngredientDto.getDrinkId())
-        );
+        DrinkIngredient drinkIngredient = DrinkIngredient.builder()
+                .id(drinkIngredientDto.getId())
+                .name(drinkIngredientDto.getName())
+                .measure(drinkIngredientDto.getMeasure())
+                .drink(drinkService.getDrink(drinkIngredientDto.getDrinkId()))
+                .build();
+        return drinkIngredient;
     }
 
     public DrinkIngredientDto mapToDrinkIngredientDto(final DrinkIngredient drinkIngredient) {
-        return new DrinkIngredientDto(
-                drinkIngredient.getId(),
-                drinkIngredient.getName(),
-                drinkIngredient.getMeasure(),
-                drinkIngredient.getDrink().getId()
-        );
+        DrinkIngredientDto drinkIngredientDto = DrinkIngredientDto.builder()
+                .id(drinkIngredient.getId())
+                .name(drinkIngredient.getName())
+                .measure(drinkIngredient.getMeasure())
+                .drinkId(drinkIngredient.getDrink().getId())
+                .build();
+        return drinkIngredientDto;
     }
 
     public List<DrinkIngredient> mapToDrinkIngredientList(final List<DrinkIngredientDto> drinkIngredientDtoList) throws DrinkNotFoundException {

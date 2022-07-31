@@ -22,23 +22,25 @@ public class CompositionMapper {
 
     public Composition mapToComposition(final CompositionDto compositionDto) throws DishNotFoundException,
             DrinkNotFoundException, CompositionNotFoundException, CommentNotFoundException {
-        return new Composition(
-                compositionDto.getId(),
-                dishService.getDish(compositionDto.getDishId()),
-                drinkService.getDrink(compositionDto.getDrinkId()),
-                compositionDto.getCreated(),
-                commentMapper.mapToCommentList(compositionDto.getCommentList())
-        );
+        Composition composition = Composition.builder()
+                .id(compositionDto.getId())
+                .dish(dishService.getDish(compositionDto.getDishId()))
+                .drink(drinkService.getDrink(compositionDto.getDrinkId()))
+                .created(compositionDto.getCreated())
+                .commentList(commentMapper.mapToCommentList(compositionDto.getCommentList()))
+                .build();
+        return composition;
     }
 
     public CompositionDto mapToCompositionDto(final Composition composition) {
-        return new CompositionDto(
-                composition.getId(),
-                composition.getDish().getId(),
-                composition.getDrink().getId(),
-                composition.getCreated(),
-                commentMapper.mapToCommentDtoList(composition.getCommentList())
-        );
+        CompositionDto compositionDto = CompositionDto.builder()
+                .id(composition.getId())
+                .dishId(composition.getDish().getId())
+                .drinkId(composition.getDrink().getId())
+                .created(composition.getCreated())
+                .commentList(commentMapper.mapToCommentDtoList(composition.getCommentList()))
+                .build();
+        return compositionDto;
     }
 
     public List<Composition> mapToCompositionList(final List<CompositionDto> compositionDtoList) throws DrinkNotFoundException,

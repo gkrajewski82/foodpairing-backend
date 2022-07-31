@@ -18,21 +18,23 @@ public class ReactionMapper {
     private final CommentService commentService;
 
     public Reaction mapToReaction(final ReactionDto reactionDto) throws CommentNotFoundException {
-        return new Reaction(
-                reactionDto.getId(),
-                reactionDto.getDescription(),
-                reactionDto.getCreated(),
-                commentService.getComment(reactionDto.getCommentId())
-        );
+        Reaction reaction = Reaction.builder()
+                .id(reactionDto.getId())
+                .description(reactionDto.getDescription())
+                .created(reactionDto.getCreated())
+                .comment(commentService.getComment(reactionDto.getCommentId()))
+                .build();
+        return reaction;
     }
 
     public ReactionDto mapToReactionDto(final Reaction reaction) {
-        return new ReactionDto(
-                reaction.getId(),
-                reaction.getDescription(),
-                reaction.getCreated(),
-                reaction.getComment().getId()
-        );
+        ReactionDto reactionDto = ReactionDto.builder()
+                .id(reaction.getId())
+                .description(reaction.getDescription())
+                .created(reaction.getCreated())
+                .commentId(reaction.getComment().getId())
+                .build();
+        return reactionDto;
     }
 
     public List<Reaction> mapToReactionList(final List<ReactionDto> reactionDtoList) throws CommentNotFoundException {

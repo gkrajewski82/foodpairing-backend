@@ -20,23 +20,25 @@ public class CommentMapper {
     private final ReactionMapper reactionMapper;
 
     public Comment mapToComment(final CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
-        return new Comment(
-                commentDto.getId(),
-                commentDto.getDescription(),
-                commentDto.getCreated(),
-                compositionService.getComposition(commentDto.getCompositionId()),
-                reactionMapper.mapToReactionList(commentDto.getReactionList())
-        );
+        Comment comment = Comment.builder()
+                .id(commentDto.getId())
+                .description(commentDto.getDescription())
+                .created(commentDto.getCreated())
+                .composition(compositionService.getComposition(commentDto.getCompositionId()))
+                .reactionList(reactionMapper.mapToReactionList(commentDto.getReactionList()))
+                .build();
+        return comment;
     }
 
     public CommentDto mapToCommentDto(final Comment comment) {
-        return new CommentDto(
-                comment.getId(),
-                comment.getDescription(),
-                comment.getCreated(),
-                comment.getComposition().getId(),
-                reactionMapper.mapToReactionDtoList(comment.getReactionList())
-        );
+        CommentDto commentDto = CommentDto.builder()
+                .id(comment.getId())
+                .description(comment.getDescription())
+                .created(comment.getCreated())
+                .compositionId(comment.getComposition().getId())
+                .reactionList(reactionMapper.mapToReactionDtoList(comment.getReactionList()))
+                .build();
+        return commentDto;
     }
 
     public List<Comment> mapToCommentList(final List<CommentDto> commentDtoList) throws CompositionNotFoundException,

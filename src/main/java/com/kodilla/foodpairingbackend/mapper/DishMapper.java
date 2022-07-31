@@ -17,27 +17,29 @@ public class DishMapper {
 
     public Dish mapToDish(DishDto dishDto) throws DrinkNotFoundException, DishNotFoundException,
             CompositionNotFoundException, CommentNotFoundException {
-        return new Dish(
-                dishDto.getId(),
-                dishDto.getExternalSystemId(),
-                dishDto.getName(),
-                dishDto.getReadyInMinutes(),
-                dishDto.getServings(),
-                dishDto.getRecipeUrl(),
-                compositionMapper.mapToCompositionList(dishDto.getCompositionList())
-        );
+        Dish dish = Dish.builder()
+                .id(dishDto.getId())
+                .externalSystemId(dishDto.getExternalSystemId())
+                .name(dishDto.getName())
+                .readyInMinutes(dishDto.getReadyInMinutes())
+                .servings(dishDto.getServings())
+                .recipeUrl(dishDto.getRecipeUrl())
+                .compositionList(compositionMapper.mapToCompositionList(dishDto.getCompositionList()))
+                .build();
+        return dish;
     }
 
     public DishDto mapToDishDto(Dish dish) {
-        return new DishDto(
-                dish.getId(),
-                dish.getExternalSystemId(),
-                dish.getName(),
-                dish.getReadyInMinutes(),
-                dish.getServings(),
-                dish.getRecipeUrl(),
-                compositionMapper.mapToCompositionDtoList(dish.getCompositionList())
-        );
+        DishDto dishDto = DishDto.builder()
+                .id(dish.getId())
+                .externalSystemId(dish.getExternalSystemId())
+                .name(dish.getName())
+                .readyInMinutes(dish.getReadyInMinutes())
+                .servings(dish.getServings())
+                .recipeUrl(dish.getRecipeUrl())
+                .compositionList(compositionMapper.mapToCompositionDtoList(dish.getCompositionList()))
+                .build();
+        return dishDto;
     }
 
     public List<DishDto> mapToDishDtoList(final List<Dish> dishList) {

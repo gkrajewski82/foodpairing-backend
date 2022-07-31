@@ -18,7 +18,7 @@ public class EmailScheduler {
     private final CompositionRepository compositionRepository;
     private final AdminConfig adminConfig;
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(cron = "0 0 8 * * *")
     public void sendEmailWithNumberOfCompositions() {
         long size = compositionRepository.count();
         final String postfix = size == 1 ? "composition" : "compositions";

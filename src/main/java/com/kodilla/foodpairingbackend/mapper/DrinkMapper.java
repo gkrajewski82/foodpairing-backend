@@ -16,27 +16,29 @@ public class DrinkMapper {
     private final DrinkIngredientMapper drinkIngredientMapper;
 
     public Drink mapToDrink(final DrinkDto drinkDto) throws DrinkNotFoundException {
-        return new Drink(
-                drinkDto.getId(),
-                drinkDto.getExternalSystemId(),
-                drinkDto.getName(),
-                drinkDto.getAlcoholic(),
-                drinkDto.getGlass(),
-                drinkDto.getInstructions(),
-                drinkIngredientMapper.mapToDrinkIngredientList(drinkDto.getDrinkIngredientList())
-        );
+        Drink drink = Drink.builder()
+                .id(drinkDto.getId())
+                .externalSystemId(drinkDto.getExternalSystemId())
+                .name(drinkDto.getName())
+                .alcoholic(drinkDto.getAlcoholic())
+                .glass(drinkDto.getGlass())
+                .instructions(drinkDto.getInstructions())
+                .drinkIngredientList(drinkIngredientMapper.mapToDrinkIngredientList(drinkDto.getDrinkIngredientList()))
+                .build();
+        return drink;
     }
 
     public DrinkDto mapToDrinkDto(final Drink drink) {
-        return new DrinkDto(
-                drink.getId(),
-                drink.getExternalSystemId(),
-                drink.getName(),
-                drink.getAlcoholic(),
-                drink.getGlass(),
-                drink.getInstructions(),
-                drinkIngredientMapper.mapToDrinkIngredientDtoList(drink.getDrinkIngredientList())
-        );
+        DrinkDto drinkDto = DrinkDto.builder()
+                .id(drink.getId())
+                .externalSystemId(drink.getExternalSystemId())
+                .name(drink.getName())
+                .alcoholic(drink.getAlcoholic())
+                .glass(drink.getGlass())
+                .instructions(drink.getInstructions())
+                .drinkIngredientList(drinkIngredientMapper.mapToDrinkIngredientDtoList(drink.getDrinkIngredientList()))
+                .build();
+        return drinkDto;
     }
 
     public List<DrinkDto> mapToDrinkDtoList(final List<Drink> drinkList) {
