@@ -52,7 +52,6 @@ class CompositionControllerTest {
         CompositionDto compositionDto = CompositionDto.builder().id(3L).dishId(1L)
                 .drinkId(2L).created(new Date()).commentList(List.of())
                 .build();
-
         List<CompositionDto> compositionDtoList = List.of(compositionDto);
         when(compositionFacade.getCompositions()).thenReturn(compositionDtoList);
 
@@ -107,7 +106,6 @@ class CompositionControllerTest {
         CompositionDto compositionDto = CompositionDto.builder().id(3L).dishId(1L)
                 .drinkId(2L).created(null).commentList(List.of())
                 .build();
-
         when(compositionFacade.saveComposition(any(CompositionDto.class))).thenReturn(compositionDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(compositionDto);
@@ -132,7 +130,6 @@ class CompositionControllerTest {
         CompositionDto compositionDto = CompositionDto.builder().id(3L).dishId(1L)
                 .drinkId(2L).created(null).commentList(List.of())
                 .build();
-
         when(compositionFacade.updateComposition(any(CompositionDto.class))).thenReturn(compositionDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(compositionDto);

@@ -52,7 +52,6 @@ class DishControllerTest {
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name").readyInMinutes(15)
                 .servings(4).recipeUrl("https://test.com").compositionList(List.of())
                 .build();
-
         List<DishDto> dishDtoList = List.of(dishDto);
         when(dishFacade.getDishes()).thenReturn(dishDtoList);
 
@@ -115,7 +114,6 @@ class DishControllerTest {
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name dto").readyInMinutes(15)
                 .servings(4).recipeUrl("https://testDto.com").compositionList(List.of())
                 .build();
-
         when(dishFacade.saveDishInDb(any(DishDto.class))).thenReturn(dishDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(dishDto);
@@ -141,7 +139,6 @@ class DishControllerTest {
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name dto").readyInMinutes(15)
                 .servings(4).recipeUrl("https://testDto.com").compositionList(List.of())
                 .build();
-
         when(dishFacade.updateDish(any(DishDto.class))).thenReturn(dishDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(dishDto);

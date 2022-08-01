@@ -55,7 +55,6 @@ class CommentControllerTest {
                 .created(new Date()).compositionId(2L).reactionList(List.of())
                 .build();
         commentDtoList.add(commentDto);
-
         when(commentFacade.getComments()).thenReturn(commentDtoList);
 
         //When & Then
@@ -79,7 +78,6 @@ class CommentControllerTest {
                 .created(new Date()).compositionId(2L).reactionList(List.of())
                 .build();
         commentDtoList.add(commentDto);
-
         when(commentFacade.getCommentsForComposition(2L)).thenReturn(commentDtoList);
 
         //When & Then
@@ -112,7 +110,6 @@ class CommentControllerTest {
         CommentDto commentDto = CommentDto.builder().id(1L).description("test description")
                 .created(null).compositionId(2L).reactionList(List.of())
                 .build();
-
         when(commentFacade.saveComment(any(CommentDto.class))).thenReturn(commentDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(commentDto);
@@ -137,7 +134,6 @@ class CommentControllerTest {
         CommentDto commentDto = CommentDto.builder().id(1L).description("test description")
                 .created(null).compositionId(2L).reactionList(List.of())
                 .build();
-
         when(commentFacade.updateComment(any(CommentDto.class))).thenReturn(commentDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(commentDto);

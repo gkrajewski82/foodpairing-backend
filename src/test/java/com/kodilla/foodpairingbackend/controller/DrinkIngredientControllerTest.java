@@ -54,7 +54,6 @@ class DrinkIngredientControllerTest {
                 name("test ingredient name").measure("test measure").drinkId(1L)
                 .build();
         drinkIngredientDtoList.add(drinkIngredientDto);
-
         when(drinkIngredientFacade.getDrinkIngredients()).thenReturn(drinkIngredientDtoList);
 
         //When & Then
@@ -78,7 +77,6 @@ class DrinkIngredientControllerTest {
                 name("test ingredient name").measure("test measure").drinkId(1L)
                 .build();
         drinkIngredientDtoList.add(drinkIngredientDto);
-
         when(drinkIngredientFacade.getDrinkIngredientsForDrink(1L)).thenReturn(drinkIngredientDtoList);
 
         //When & Then
@@ -111,7 +109,6 @@ class DrinkIngredientControllerTest {
         DrinkIngredientDto drinkIngredientDto = DrinkIngredientDto.builder().id(2L).
                 name("test ingredient name").measure("test measure").drinkId(1L)
                 .build();
-
         when(drinkIngredientFacade.saveDrinkIngredient(any(DrinkIngredientDto.class))).thenReturn(drinkIngredientDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(drinkIngredientDto);
@@ -136,7 +133,6 @@ class DrinkIngredientControllerTest {
         DrinkIngredientDto drinkIngredientDto = DrinkIngredientDto.builder().id(2L).
                 name("test ingredient name").measure("test measure").drinkId(1L)
                 .build();
-
         when(drinkIngredientFacade.updateDrinkIngredient(any(DrinkIngredientDto.class))).thenReturn(drinkIngredientDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(drinkIngredientDto);

@@ -24,7 +24,6 @@ import static org.mockito.Mockito.when;
 @WebMvcTest(ReactionController.class)
 class ReactionControllerTest {
 
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private MockMvc mockMvc;
@@ -54,7 +53,6 @@ class ReactionControllerTest {
         ReactionDto reactionDto = ReactionDto.builder().id(1L).description("test description").created(null).commentId(2L)
                 .build();
         reactionDtoList.add(reactionDto);
-
         when(reactionFacade.getReactions()).thenReturn(reactionDtoList);
 
         //When & Then
@@ -76,7 +74,6 @@ class ReactionControllerTest {
         ReactionDto reactionDto = ReactionDto.builder().id(1L).description("test description").created(null).commentId(2L)
                 .build();
         reactionDtoList.add(reactionDto);
-
         when(reactionFacade.getReactionsForComment(2L)).thenReturn(reactionDtoList);
 
         //When & Then
@@ -107,7 +104,6 @@ class ReactionControllerTest {
         //Given
         ReactionDto reactionDto = ReactionDto.builder().id(1L).description("test description").created(null).commentId(2L)
                 .build();
-
         when(reactionFacade.saveReaction(any(ReactionDto.class))).thenReturn(reactionDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(reactionDto);
@@ -130,7 +126,6 @@ class ReactionControllerTest {
         //Given
         ReactionDto reactionDto = ReactionDto.builder().id(1L).description("test description").created(null).commentId(2L)
                 .build();
-
         when(reactionFacade.updateReaction(any(ReactionDto.class))).thenReturn(reactionDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(reactionDto);

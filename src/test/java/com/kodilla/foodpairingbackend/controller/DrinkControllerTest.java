@@ -60,7 +60,6 @@ class DrinkControllerTest {
         DrinkDto drinkDto = DrinkDto.builder().id(1L).externalSystemId("10").name("test drink name").alcoholic("test alcoholic")
                 .glass("test glass").instructions("test instructions").drinkIngredientList(drinkIngredientDtoList)
                 .build();
-
         List<DrinkDto> drinkDtoList = List.of(drinkDto);
         when(drinkFacade.getDrinks()).thenReturn(drinkDtoList);
 
@@ -104,7 +103,6 @@ class DrinkControllerTest {
                 name("test dto ingredient name").measure("test dto measure").drinkId(drinkDto.getId())
                 .build();
         drinkIngredientDtoList.add(drinkIngredientDto);
-
         when(drinkFacade.getDrink(drinkDto.getId())).thenReturn(drinkDto);
 
         //When & Then
@@ -149,7 +147,6 @@ class DrinkControllerTest {
                 name("test dto ingredient name").measure("test dto measure").drinkId(drinkDto.getId())
                 .build();
         drinkIngredientDtoList.add(drinkIngredientDto);
-
         when(drinkFacade.saveDrinkInDb(any(DrinkDto.class))).thenReturn(drinkDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(drinkDto);
@@ -186,7 +183,6 @@ class DrinkControllerTest {
                 name("test dto ingredient name").measure("test dto measure").drinkId(drinkDto.getId())
                 .build();
         drinkIngredientDtoList.add(drinkIngredientDto);
-
         when(drinkFacade.updateDrink(any(DrinkDto.class))).thenReturn(drinkDto);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(drinkDto);
