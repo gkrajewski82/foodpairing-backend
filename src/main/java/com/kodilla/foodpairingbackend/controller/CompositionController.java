@@ -1,7 +1,6 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.kodilla.foodpairingbackend.domain.dto.CompositionDto;
-import com.kodilla.foodpairingbackend.domain.entity.Composition;
 import com.kodilla.foodpairingbackend.exception.*;
 import com.kodilla.foodpairingbackend.facade.CompositionFacade;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +34,9 @@ public class CompositionController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CompositionDto> createComposition(@RequestBody CompositionDto compositionDto) throws DrinkNotFoundException,
+    public ResponseEntity<CompositionDto> saveComposition(@RequestBody CompositionDto compositionDto) throws DrinkNotFoundException,
             DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
-        return ResponseEntity.ok(compositionFacade.createComposition(compositionDto));
+        return ResponseEntity.ok(compositionFacade.saveComposition(compositionDto));
     }
 
     @PutMapping

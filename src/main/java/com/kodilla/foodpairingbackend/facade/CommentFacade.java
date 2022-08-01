@@ -32,7 +32,7 @@ public class CommentFacade {
         commentService.deleteComment(commentId);
     }
 
-    public CommentDto createComment(CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
+    public CommentDto saveComment(CommentDto commentDto) throws CompositionNotFoundException, CommentNotFoundException {
         Comment comment = commentMapper.mapToComment(commentDto);
         Comment savedComment = commentService.saveComment(comment);
         return commentMapper.mapToCommentDto(savedComment);

@@ -1,7 +1,6 @@
 package com.kodilla.foodpairingbackend.controller;
 
 import com.google.gson.Gson;
-import com.kodilla.foodpairingbackend.domain.dto.CompositionDto;
 import com.kodilla.foodpairingbackend.domain.dto.DishDto;
 import com.kodilla.foodpairingbackend.domain.entity.Dish;
 import com.kodilla.foodpairingbackend.facade.DishFacade;
@@ -16,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -26,6 +24,7 @@ import static org.mockito.Mockito.when;
 @WebMvcTest(DishController.class)
 class DishControllerTest {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private MockMvc mockMvc;
 
@@ -51,7 +50,7 @@ class DishControllerTest {
     void shouldGetDishes() throws Exception {
         //Given
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name").readyInMinutes(15)
-                .servings(4).recipeUrl("https://test.com").compositionList(new ArrayList<>())
+                .servings(4).recipeUrl("https://test.com").compositionList(List.of())
                 .build();
 
         List<DishDto> dishDtoList = List.of(dishDto);
@@ -76,13 +75,12 @@ class DishControllerTest {
     @Test
     void shouldGetDish() throws Exception {
         //Given
-        List<CompositionDto> compositionDtoList = new ArrayList<>();
         Dish dish = Dish.builder()
                 .id(1L).externalSystemId(10L).name("test name").readyInMinutes(15)
-                .servings(4).recipeUrl("https://test.com").compositionList(new ArrayList<>())
+                .servings(4).recipeUrl("https://test.com").compositionList(List.of())
                 .build();
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name dto").readyInMinutes(15)
-                .servings(4).recipeUrl("https://testDto.com").compositionList(compositionDtoList)
+                .servings(4).recipeUrl("https://testDto.com").compositionList(List.of())
                 .build();
         when(dishFacade.getDish(dish.getId())).thenReturn(dishDto);
 
@@ -115,7 +113,7 @@ class DishControllerTest {
     @Test
     void shouldSaveDish() throws Exception {
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name dto").readyInMinutes(15)
-                .servings(4).recipeUrl("https://testDto.com").compositionList(new ArrayList<>())
+                .servings(4).recipeUrl("https://testDto.com").compositionList(List.of())
                 .build();
 
         when(dishFacade.saveDishInDb(any(DishDto.class))).thenReturn(dishDto);
@@ -141,7 +139,7 @@ class DishControllerTest {
     @Test
     void shouldUpdateDish() throws Exception {
         DishDto dishDto = DishDto.builder().id(1L).externalSystemId(10L).name("test name dto").readyInMinutes(15)
-                .servings(4).recipeUrl("https://testDto.com").compositionList(new ArrayList<>())
+                .servings(4).recipeUrl("https://testDto.com").compositionList(List.of())
                 .build();
 
         when(dishFacade.updateDish(any(DishDto.class))).thenReturn(dishDto);

@@ -31,7 +31,7 @@ public class DrinkIngredientFacade {
         drinkIngredientService.deleteDrinkIngredient(drinkIngredientId);
     }
 
-    public DrinkIngredientDto createDrinkIngredient(DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
+    public DrinkIngredientDto saveDrinkIngredient(DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
         DrinkIngredient drinkIngredient = drinkIngredientMapper.mapToDrinkIngredient(drinkIngredientDto);
         DrinkIngredient savedDrinkIngredient = drinkIngredientService.saveDrinkIngredient(drinkIngredient);
         return drinkIngredientMapper.mapToDrinkIngredientDto(savedDrinkIngredient);

@@ -34,8 +34,8 @@ public class DrinkIngredientController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DrinkIngredientDto> createDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
-        return ResponseEntity.ok(drinkIngredientFacade.createDrinkIngredient(drinkIngredientDto));
+    public ResponseEntity<DrinkIngredientDto> saveDrinkIngredient(@RequestBody DrinkIngredientDto drinkIngredientDto) throws DrinkNotFoundException {
+        return ResponseEntity.ok(drinkIngredientFacade.saveDrinkIngredient(drinkIngredientDto));
     }
 
     @PutMapping

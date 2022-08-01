@@ -42,7 +42,7 @@ public class CompositionFacade {
         compositionService.deleteComposition(compositionId);
     }
 
-    public CompositionDto createComposition(CompositionDto compositionDto) throws DrinkNotFoundException,
+    public CompositionDto saveComposition(CompositionDto compositionDto) throws DrinkNotFoundException,
             DishNotFoundException, CompositionNotFoundException, CommentNotFoundException {
         Composition composition = compositionMapper.mapToComposition(compositionDto);
         Composition savedComposition = compositionService.saveComposition(composition);

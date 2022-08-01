@@ -34,8 +34,8 @@ public class ReactionController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ReactionDto> createReaction(@RequestBody ReactionDto reactionDto) throws CommentNotFoundException {
-        return ResponseEntity.ok(reactionFacade.createReaction(reactionDto));
+    public ResponseEntity<ReactionDto> saveReaction(@RequestBody ReactionDto reactionDto) throws CommentNotFoundException {
+        return ResponseEntity.ok(reactionFacade.saveReaction(reactionDto));
     }
 
     @PutMapping

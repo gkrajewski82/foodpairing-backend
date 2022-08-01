@@ -31,7 +31,7 @@ public class ReactionFacade {
         reactionService.deleteReaction(reactionId);
     }
 
-    public ReactionDto createReaction(ReactionDto reactionDto) throws CommentNotFoundException {
+    public ReactionDto saveReaction(ReactionDto reactionDto) throws CommentNotFoundException {
         Reaction reaction = reactionMapper.mapToReaction(reactionDto);
         Reaction savedReaction = reactionService.saveReaction(reaction);
         return reactionMapper.mapToReactionDto(savedReaction);
